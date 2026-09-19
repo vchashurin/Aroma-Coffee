@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aroma Coffee — Затишна кав'ярня у місті</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome (Іконки) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --bg-color: #12100e;
+            --surface-color: #1c1815;
+            --accent-gold: #c89666;
+            --accent-hover: #e0ac7d;
+            --text-main: #f3efe6;
+            --text-muted: #a69f96;
+            --font-title: 'Cormorant Garamond', serif;
+            --font-body: 'Montserrat', sans-serif;
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: var(--font-body);
+            line-height: 1.6;
+        }
+
+        /* Шапка сайту */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(18, 16, 14, 0.9);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(200, 150, 102, 0.15);
+        }
+
+        .logo {
+            font-family: var(--font-title);
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-main);
+            text-decoration: none;
+            letter-spacing: 1px;
+        }
+
+        .logo span { color: var(--accent-gold); }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        nav a:hover { color: var(--accent-gold); }
+
+        .btn-reserve {
+            background: var(--accent-gold);
+            color: var(--bg-color);
+            padding: 10px 24px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+
+        .btn-reserve:hover {
+            background: var(--accent-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(200, 150, 102, 0.3);
+        }
+
+        /* Hero Секція */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(18, 16, 14, 0.75), rgba(18, 16, 14, 0.85)), 
+                        url('https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        .hero-content { max-width: 800px; }
+
+        .hero-subtitle {
+            color: var(--accent-gold);
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 15px;
+        }
+
+        .hero h1 {
+            font-family: var(--font-title);
+            font-size: 4.5rem;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .hero p {
+            color: var(--text-muted);
+            font-size: 1.15rem;
+            margin-bottom: 35px;
+            max-width: 600px;
+            margin: 0 auto 35px;
+        }
+
+        /* Загальні стилі секцій */
+        .section { padding: 100px 8%; }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-family: var(--font-title);
+            font-size: 3rem;
+            color: var(--text-main);
+        }
+
+        .section-title p {
+            color: var(--accent-gold);
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* Блок Особливості */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            background: var(--surface-color);
+            padding: 35px 25px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: var(--transition);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(200, 150, 102, 0.4);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .feature-icon {
+            font-size: 2.2rem;
+            color: var(--accent-gold);
+            margin-bottom: 20px;
+        }
+
+        .feature-card h3 {
+            font-family: var(--font-title);
+            font-size: 1.6rem;
+            margin-bottom: 12px;
+        }
+
+        .feature-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* Заголовки категорій меню */
+        .category-heading {
+            font-family: var(--font-title);
+            font-size: 2.2rem;
+            color: var(--accent-gold);
+            margin: 40px 0 25px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .category-heading::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: rgba(200, 150, 102, 0.2);
+        }
+
+        /* Секція Меню */
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .menu-card {
+            background: var(--surface-color);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .menu-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(200, 150, 102, 0.3);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .menu-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .menu-card-info {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .menu-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 12px;
+            margin-bottom: 8px;
+        }
+
+        .menu-card-title {
+            font-family: var(--font-title);
+            font-size: clamp(1.1rem, 2.5vw, 1.35rem);
+            line-height: 1.25;
+            word-break: break-word;
+            hyphens: auto;
+        }
+
+        .menu-card-price {
+            color: var(--accent-gold);
+            font-weight: 600;
+            font-size: 1.15rem;
+            white-space: nowrap;
+        }
+
+        .menu-card-desc {
+            color: var(--text-muted);
+            font-size: 0.88rem;
+            margin-top: 4px;
+        }
+
+        /* Бронювання */
+        .reservation-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: var(--surface-color);
+            padding: 40px;
+            border-radius: 16px;
+            border: 1px solid rgba(200, 150, 102, 0.2);
+        }
+
+        .form-group { margin-bottom: 20px; }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 12px 15px;
+            background: var(--bg-color);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            color: var(--text-main);
+            font-family: var(--font-body);
+            font-size: 1rem;
+            outline: none;
+            transition: var(--transition);
+        }
+
+        .form-group input:focus, .form-group select:focus {
+            border-color: var(--accent-gold);
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 14px;
+            background: var(--accent-gold);
+            color: var(--bg-color);
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .btn-submit:hover { background: var(--accent-hover); }
+
+        /* Підвал */
+        footer {
+            background: #0b0a09;
+            padding: 60px 8% 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h4 {
+            font-family: var(--font-title);
+            font-size: 1.4rem;
+            color: var(--accent-gold);
+            margin-bottom: 20px;
+        }
+
+        .footer-col p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 10px;
+        }
+
+        .socials { display: flex; gap: 15px; }
+
+        .socials a {
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            transition: var(--transition);
+        }
+
+        .socials a:hover { color: var(--accent-gold); }
+
+        .copyright {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        @media (max-width: 768px) {
+            header { padding: 15px 5%; }
+            nav { display: none; }
+            .hero h1 { font-size: 3rem; }
+            .section { padding: 60px 5%; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Навігація -->
+    <header>
+        <a href="#" class="logo">Aroma<span>.</span></a>
+        <nav>
+            <ul>
+                <li><a href="#features">Особливості</a></li>
+                <li><a href="#menu">Меню</a></li>
+                <li><a href="#reserve">Бронювання</a></li>
+                <li><a href="#contacts">Контакти</a></li>
+            </ul>
+        </nav>
+        <a href="#reserve" class="btn-reserve">Забронювати</a>
+    </header>
+
+    <!-- Головна секція -->
+    <section class="hero">
+        <div class="hero-content">
+            <p class="hero-subtitle">Свіжообсмажена кава та авторські напої</p>
+            <h1>Атмосфера затишку та справжнього смаку</h1>
+            <p>Завітайте до Aroma Coffee за любимою кавою, вишуканим чаєм, прохолодними коктейлями та десертами.</p>
+            <a href="#menu" class="btn-reserve" style="padding: 14px 32px; font-size: 1rem;">Переглянути меню</a>
+        </div>
+    </section>
+
+    <!-- Особливості кав'ярні -->
+    <section class="section" id="features">
+        <div class="section-title">
+            <p>Чому саме ми</p>
+            <h2>В нашій кав'ярні є...</h2>
+        </div>
+
+        <div class="features-grid">
+            <div class="feature-card">
+                <i class="fa-solid fa-seedling feature-icon"></i>
+                <h3>Власне обсмаження</h3>
+                <p>Ми використовуємо лише спешелті-зерна 100% Арабіки та обсмажуємо їх невеликими партіями щотижня.</p>
+            </div>
+
+            <div class="feature-card">
+                <i class="fa-solid fa-dog feature-icon"></i>
+                <h3>Pet-Friendly зона</h3>
+                <p>Завітайте до нас із чотирилапим другом! Для питомців завжди є свіжа вода та смаколики.</p>
+            </div>
+
+            <div class="feature-card">
+                <i class="fa-solid fa-laptop-code feature-icon"></i>
+                <h3>Coworking-зони</h3>
+                <p>Розетки біля кожного столика, швидкісний Wi-Fi та зручні крісла для комфортної роботи або навчання.</p>
+            </div>
+
+            <div class="feature-card">
+                <i class="fa-solid fa-mug-hot feature-icon"></i>
+                <h3>Альтернативне молоко</h3>
+                <p>Готуємо каву на вівсяному, мигдалевому, кокосовому або безлактозному молоці без доплати.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Повне Меню -->
+    <section class="section" id="menu" style="background: var(--surface-color);">
+        <div class="section-title">
+            <p>Наш асортимент</p>
+            <h2>Авторське Меню</h2>
+        </div>
+
+        <!-- КАТЕГОРІЯ 1: Кава та Десерти -->
+        <h3 class="category-heading"><i class="fa-solid fa-mug-saucer"></i> Кава та Десерти</h3>
+        <div class="menu-grid">
+            <div class="menu-card">
+                <img src="https://images.unsplash.com/photo-1510591509098-f4fdc6d0ff04?auto=format&fit=crop&w=600&q=80" alt="Еспресо">
+                <div class="menu-card-info">
+                    <div class="menu-card-header">
+                        <h3 class="menu-card-title">Еспресо Доппіо</h3>
+                        <span class="menu-card-price">55 ₴</span>
+                    </div>
+                    <p class="menu-card-desc">Подвійна порція насиченої кави з густою пінкою та яскравою кислинкою.</p>
+                </div>
+            </div>
+
+            <div class="menu-card">
+                <img src="https://images.unsplash.com/photo-1534778101976-62847782c213?auto=format&fit=crop&w=600&q=80" alt="Капучино">
+                <div class="menu-card-info">
+                    <div class="menu-card-header">
+                        <h3 class="menu-card-title">Капучино</h3>
+                        <span class="menu-card-price">75 ₴</span>
+                    </div>
+                    <p class="menu-card-desc">Класичний баланс міцного еспресо та ніжне збите молоко.</p>
+                </div>
+            </div>
+
+            <div class="menu-card">
+                <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=600&q=80" alt="Флет Вайт">
+                <div class="menu-card-info">
+                    <div class="menu-card-header">
+                        <h3 class="menu-card-title">Флет Вайт</h3>
+                        <span class="menu-card-price">85 ₴</span>
+                    </div>
+                    <p class="menu-card-desc">Подвійний еспресо із тонким шаром шовковистого молока.</p>
+                </div>
+            </div>
+
+            <div class="menu-card">
+                <img src="https://images.unsplash.com/photo-1572442388796-11668a67e53d?auto=format&fit=crop&w=600&q=80" alt="Лате">
+                <div class="menu-card-info">
+                    <div class="menu-card-header">
+                        <h3 class="menu-card-title">Лате Макіато</h3>
+                        <span class="menu-card-price">80 ₴</span>
+                    </div>
+                    <p class="menu-card-desc">Ніжний та м'який кавовий напій із високою молочною піною.</p>
+                </div>
+            </div>
+
+            <div class="menu-card">
+                <img src="https://images.unsplash.com/photo-1541167760496-1628856ab772?auto=format&fit=crop&w=600&q=80" alt="Раф Лаванда">
+                <div class="menu-card-info">
+                    <div class="menu-card-header">
+                        <h3 class="menu-card-title">Лавандовий Раф</h3>
+                        <span class="menu-card-price">95 ₴</span>
+                    </div>
+                    <p class="menu-card-desc">Вершково-кавовий напій із додаванням натурального лавандового цукру.</p>
+                </div>
+            </div>
+
+            <div class="menu-card">
+                <img src="https://images.unsplash.com/photo-1517701604599-bb29b565090c?auto=format&fit=crop&w=600&q=80" alt="Фільтр-кава">
+                <div class="menu-card-info">
+                    <div class="menu-card-header">
+                        <h3 class="menu-card-title">Фільтр-Кава Batch Brew</h3>
+                        <span class="menu-card-price">65 ₴</span>
+                    </div>
+                    <p class="menu-card-desc">Легка кава з багатим фруктово-ягідним букетом смаку.</p>
+                </div>
+            </div>
+
+            <div class="menu-card">
+                <img src="https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=600&q=80" alt="Круасан">
+                <div class="menu-card-info">
+                    <div class="menu-card-header">
+                        <h3 class="menu-card-title">Французький Круасан</h3>
+                        <span class="menu-card-price">65 ₴</span>
+                    </div>
+                    <p class="menu-card-desc">Свіжоспечений хрусткий круасан на вершковому маслі.</p>
+                </div>
+            </div>
+
+            <div class="menu-card">
+                <img src="https://images.unsplash.com/photo-1565958011703-44f9829ba187?auto=format&fit=crop&w=600&q=80" alt="Фісташковий Тарт">
+                <div class="menu-card-info">
+                    <div class="menu-card-header">
+                        <h3 class="menu-card-title">Фісташковий Тарт</h3>
+                        <span class="menu-card-price">120 ₴</span>
+                    </div>
+                    <p class="menu-card-desc">Пісочна основа, фісташковий крем та свіжі ягоди малини.</p>
+                </div>
+            </div>
+
+            <div class="menu-card">
+                <img src="https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=600&q=80" alt="Брауні">
+                <div class="menu-card-info">
+                    <div class="menu-card-header">
+                        <h3 class="menu-card-title">Шоколадний Брауні</h3>
+                        <span class="menu-card-price">90 ₴</span>
+                    </div>
+                    <p class="menu-card-desc">Вологий десерт із чорного шоколаду з волоським горіхом та сіллю.</p>
+                </div>
+            </div>
+
+            <div class="menu-card">
+                <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=600&q=80" alt="Сіннабон">
+                <div class="menu-card-info">
+                    <div class="menu-card-header">
+                        <h3 class="menu-card-title">Сінабон з Корицею</h3>
+                        <span class="menu-card-price">85 ₴</span>
+                    </div>
+                    <p class="menu-card-desc">Духмяна здобна булочка з корицею та крем-чизом.</p>
+                </div>
+            </div>
+
+            <div class="menu-card">
+                <img src="https://images.unsplash.com/photo-1587314168485-3236d6710814?auto=format&fit=crop&w=600&q=80" alt="Чизкейк">
+                <div class="menu-card-info">
+                    <div class="menu-card-header">
+                        <h3 class="menu-card-title">Чизкейк Нью-Йорк</h3>
+                        <span class="menu-card-price">110 ₴</span>
+                    </div>
+                    <p class="menu-card-desc">Ніжна сирна текстура на пісочній основі з полуничним соусом.</p>
+                </div>
+            </div>
+
+            <div class="menu-card">
+                <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=600&q=80" alt="Аффогато">
+                <div class="menu-card-info">
+                    <div class="menu-card-header">
+                        <h3 class="menu-card-title">Аффогато</h3>
+                        <span class="menu-card-price">85 ₴</span>
+                    </div>
+                    <p class="menu-card-desc">Кулька ванільного морозива, залита гарячим еспресо.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- КАТЕГОРІЯ 2: Вибір Чайного Сомельє -->
+        <h3 class="category-heading"><i class="fa-solid fa-leaf"></i> Вибір Чайного Сомельє</h3>
+        <div class="menu-grid">
+            <div class="menu-card">
+                <img src="https://images.unsplash.com/photo-1576092768241-dec231879fc3?auto=format&fit=crop&w=600&q=80" alt="Чай Матча">
+                <div class="menu-card-info">
+                    <div class="menu-card-header">
+                        <h3 class="menu-card-title">Матча Лате</h3>
+                        <span class="menu-card-price">90 ₴</span>
+                    </div>
+                    <p class="menu-card-desc">Японський зелений чай церемоніального класу з вівсяним молоком.</p>
+                </div>
+            </div>
+
+            <div class="menu-card">
+                <img src="https://images.unsplash.com/photo-1627435601361-ec25f5b1d0e5?auto=format&fit=crop&w=600&q=80" alt="Зелений чай">
+                <div class="menu-card-info">
+                    <div class="menu-card-header">
+                        <h3 class="menu-card-title">Жасминовий Сенча</h3>
+                        <span class="menu-card-price">70 ₴</span>
+                    </div>
+                    <p class="menu-card-desc">Класичний зелений чай із витонченим ароматом квітів жасмину.</p>
+                </div>
+            </div>
+
+            <div class="menu-card">
+                <img src="https://images.unsplash.com/photo-1594631252845-29fc4cc8cde9?auto=format&fit=crop&w=600&q=80" alt="Ерл Грей Бергамот">
+                <div class="menu-card-info">
+                    <div class="menu-card-header">
+                        <h3 class="menu-card-title">Ерл Грей Бергамот</h3>
+                        <span class="menu-card-price">70 ₴</span>
+                    </div>
+                    <p class="menu-card-desc">Насичений чорний високогірний чай з натуральною олією бергамоту.</p>
+                </div>
+            </div>
+
+            <div class="menu-card">
+                <img src="https://images.unsplash.com/photo-1544787219-7f47ccb76574?auto=format&fit=crop&w=600&q=80" alt="Ягідний чай">
+                <div class="menu-card-info">
+                    <div class="menu-card-header">
+                        <h3 class="menu-card-title">Обліпиховий Мікс</h3>
+                        <span class="menu-card-price">85 ₴</span>
+                    </div>
+                    <p class="menu-card-desc">Авторський чай із натуральною обліпихою, імбиром та медом.</p>
+                </div>
+            </div>
+
+            <div class="menu-card">
+                <img src="https://images.unsplash.com/photo-1597481499750-3e6b22637e12?auto=format&fit=crop&w=600&q=80" alt="Трав'яний чай">
+                <div class="menu-card-info">
+                    <div class="menu-card-header">
+                        <h3 class="menu-card-title">Альпійські Трави & М'ята</h3>
+                        <span class="menu-card-price">75 ₴</span>
+                    </div>
+                    <p class="menu-card-desc">Заспокійливий збір із ромашки, чабрецю, м'яти та меліси.</p>
+                </div>
+            </div>
+
+            <div class="menu-card">
+                <img src="https://artfultea.com/cdn/shop/files/0-1_2fd4f135-6d77-4087-8d8d-704f78c47732.jpg?v=1751560887&width=533" alt="Шу Пуер 2018">
+                <div class="menu-card-info">
+                    <div class="menu-card-header">
+                        <h3 class="menu-card-title">Шу Пуер 2018</h3>
+                        <span class="menu-card-price">95 ₴</span>
+                    </div>
+                    <p class="menu-card-desc">Витриманий ферментований чай із глибоким деревним ароматом.</p>
+                </div>
+            </div>
+
+            <div class="menu-card">
+                <img src="https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&w=600&q=80" alt="Фруктовий чай">
+                <div class="menu-card-info">
+                    <div class="menu-card-header">
+                        <h3 class="menu-card-title">Малина & Маракуйя</h3>
+                        <span class="menu-card-price">85 ₴</span>
+                    </div>
+                    <p class="menu-card-desc">Яскравий вітамінний чай із ягід малини та тропічного пюре маракуйї.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- КАТЕГОРІЯ 3: Прохолодні Коктейлі та Лимонади -->
+        <h3 class="category-heading"><i class="fa-solid fa-glass-water"></i> Прохолодні Коктейлі & Лимонади</h3>
+        <div class="menu-grid">
+            <div class="menu-card">
+                <img src="https://images.unsplash.com/photo-1517701604599-bb29b565090c?auto=format&fit=crop&w=600&q=80" alt="Еспресо Тонік">
+                <div class="menu-card-info">
+                    <div class="menu-card-header">
+                        <h3 class="menu-card-title">Еспресо Тонік</h3>
+                        <span class="menu-card-price">95 ₴</span>
+                    </div>
+                    <p class="menu-card-desc">Подвійний еспресо, ігристий тонік, лід та часточка свіжого лайма.</p>
+                </div>
+            </div>
+
+            <div class="menu-card">
+                <img src="https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&w=600&q=80" alt="Мохіто">
+                <div class="menu-card-info">
+                    <div class="menu-card-header">
+                        <h3 class="menu-card-title">Б/А Мохіто Полуничний</h3>
+                        <span class="menu-card-price">90 ₴</span>
+                    </div>
+                    <p class="menu-card-desc">Свіжа м'ята, тростинний цукор, полуничне пюре, содова та лід.</p>
+                </div>
+            </div>
+
+            <div class="menu-card">
+                <img src="https://images.unsplash.com/photo-1621263764928-df1444c5e859?auto=format&fit=crop&w=600&q=80" alt="Лимонад">
+                <div class="menu-card-info">
+                    <div class="menu-card-header">
+                        <h3 class="menu-card-title">Лимонад Цитрус-Імбир</h3>
+                        <span class="menu-card-price">80 ₴</span>
+                    </div>
+                    <p class="menu-card-desc">Освіжаючий мікс апельсинового та фрешу грейпфрута з імбирним сиропом.</p>
+                </div>
+            </div>
+
+            <div class="menu-card">
+                <img src="https://images.unsplash.com/photo-1556881286-fc6915169721?auto=format&fit=crop&w=600&q=80" alt="Айс Лате">
+                <div class="menu-card-info">
+                    <div class="menu-card-header">
+                        <h3 class="menu-card-title">Айс Карамель Лате</h3>
+                        <span class="menu-card-price">90 ₴</span>
+                    </div>
+                    <p class="menu-card-desc">Холодне молоко, еспресо, домашній карамельний соус та кубики льоду.</p>
+                </div>
+            </div>
+
+            <div class="menu-card">
+                <img src="https://images.unsplash.com/photo-1534353473418-4cfa6c56fd38?auto=format&fit=crop&w=600&q=80" alt="Айс Матча-Тонік">
+                <div class="menu-card-info">
+                    <div class="menu-card-header">
+                        <h3 class="menu-card-title">Айс Матча-Тонік</h3>
+                        <span class="menu-card-price">100 ₴</span>
+                    </div>
+                    <p class="menu-card-desc">Шовковиста зелена матча, тонік Premium та цитрусовий кордіал.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Бронювання -->
+    <section class="section" id="reserve">
+        <div class="section-title">
+            <p>Завітайте в гості</p>
+            <h2>Забронювати Столик</h2>
+        </div>
+
+        <div class="reservation-container">
+            <form id="bookingForm">
+                <div class="form-group">
+                    <label for="name">Ваше ім'я</label>
+                    <input type="text" id="name" required placeholder="Олександр">
+                </div>
+                <div class="form-group">
+                    <label for="phone">Номер телефону</label>
+                    <input type="tel" id="phone" required placeholder="+380 (99) 000-00-00">
+                </div>
+                <div class="form-group">
+                    <label for="guests">Кількість гостей</label>
+                    <select id="guests">
+                        <option value="1">1 особа</option>
+                        <option value="2" selected>2 особи</option>
+                        <option value="3-4">3-4 особи</option>
+                        <option value="5+">5+ осіб</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn-submit">Підтвердити бронювання</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Підвал -->
+    <footer id="contacts">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <a href="#" class="logo">Aroma<span>.</span></a>
+                <p style="margin-top: 15px;">Ваш затишний куточок зі справжньою кавою, чаєм та атмосферними напоями.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Адреса та Час</h4>
+                <p><i class="fa-solid fa-location-dot"></i> вул. Хрещатик, 15, Київ</p>
+                <p><i class="fa-solid fa-clock"></i> Щодня: 08:00 – 21:00</p>
+            </div>
+            <div class="footer-col">
+                <h4>Ми в соцмережах</h4>
+                <div class="socials">
+                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#"><i class="fa-brands fa-telegram"></i></a>
+                    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>© 2026 Aroma Coffee. Всі права захищені.</p>
+        </div>
+    </footer>
+
+   <script>
+document.getElementById('bookingForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const name = document.getElementById('name').value;
+    const phone = document.getElementById('phone').value;
+    const guests = document.getElementById('guests').value;
+
+    const submitBtn = this.querySelector('.btn-submit');
+    const originalText = submitBtn.textContent;
+    submitBtn.textContent = 'Надсилаємо...';
+    submitBtn.disabled = true;
+
+    fetch('/api/booking', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            name: name,
+            phone: phone,
+            guests: guests
+        })
+    })
+    .then(async response => {
+        if (response.ok) {
+            alert(`Дякуємо, ${name}! Ваше бронювання прийнято.`);
+            this.reset();
+        } else {
+            const errData = await response.json().catch(() => ({}));
+            alert(errData.error || 'Помилка при відправці бронювання.');
+        }
+    })
+    .catch(error => {
+        console.error('Ошибка:', error);
+        alert('Сталася помилка під час відправки запиту.');
+    })
+    .finally(() => {
+        submitBtn.textContent = originalText;
+        submitBtn.disabled = false;
+    });
+});
+</script>
+</body>
+</html>
