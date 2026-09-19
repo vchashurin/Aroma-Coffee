@@ -43,63 +43,47 @@
         }
 
         /* Шапка сайту */
-       header {
-  width: 100%;
-  max-width: 1200px; /* або видаліть max-width, якщо хочете на всю ширину екрана */
-  margin: 0 auto;
-  padding: 0 20px;
-  box-sizing: border-box;
-}
-
         header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between; /* Розносить логотип, меню та мову по різних краях */
-  flex-wrap: wrap; /* Дозволяє елементам переноситися на новий рядок на менших екранах */
-}
-        header, .navbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding-left: 40px !important; /* Збільшує відступ від лівого краю екрана */
-  padding-right: 40px !important;
-  width: 100%;
-  box-sizing: border-box;
-}
-
-        .logo, .navbar-brand {
-  margin-right: 40px; /* Додає простір між назвою та меню */
-}
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 8%;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            background: rgba(18, 16, 14, 0.9);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(200, 150, 102, 0.15);
+        }
 
         .logo {
+            flex-shrink: 0;
             font-family: var(--font-title);
             font-size: 2rem;
             font-weight: 700;
             color: var(--text-main);
             text-decoration: none;
             letter-spacing: 1px;
+            white-space: nowrap;
         }
 
-        header, .nav-container {
-  display: flex;
-  justify-content: space-between; /* Розносить логотип, меню та кнопки по краях */
-  align-items: center;
-  padding: 20px 40px;
-}
-
-.nav-links {
-  display: flex;
-  gap: 30px; /* Збільшує відстань між самими пунктами меню */
-  margin-left: auto; /* Допомагає змістити меню в потрібну сторону */
-  margin-right: 40px;
-}
-
         .logo span { color: var(--accent-gold); }
+
+        nav {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            min-width: 0;
+        }
 
         nav ul {
             display: flex;
             list-style: none;
             gap: 30px;
+            flex-wrap: nowrap;
+            white-space: nowrap;
         }
 
         nav a {
@@ -121,6 +105,7 @@
             font-weight: 600;
             font-size: 0.9rem;
             transition: var(--transition);
+            white-space: nowrap;
         }
 
         .lang-switcher {
@@ -134,6 +119,7 @@
             border-radius: 999px;
             padding: 8px 12px;
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.22);
+            flex-shrink: 0;
         }
 
         .lang-label {
