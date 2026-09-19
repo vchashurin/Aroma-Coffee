@@ -96,6 +96,52 @@
             transition: var(--transition);
         }
 
+        .lang-switcher {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-left: auto;
+            margin-right: 14px;
+            background: rgba(18, 16, 14, 0.92);
+            border: 1px solid rgba(200, 150, 102, 0.35);
+            border-radius: 999px;
+            padding: 8px 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.22);
+        }
+
+        .lang-label {
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        .lang-switcher select {
+            background: rgba(28, 24, 21, 0.96);
+            color: var(--text-main);
+            border: 1px solid rgba(200, 150, 102, 0.35);
+            border-radius: 12px;
+            padding: 8px 32px 8px 12px;
+            font-family: var(--font-body);
+            font-size: 0.9rem;
+            outline: none;
+            cursor: pointer;
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-image: linear-gradient(45deg, transparent 50%, var(--accent-gold) 50%), linear-gradient(135deg, var(--accent-gold) 50%, transparent 50%);
+            background-position: calc(100% - 18px) calc(50% - 2px), calc(100% - 12px) calc(50% - 2px);
+            background-size: 6px 6px, 6px 6px;
+            background-repeat: no-repeat;
+            color-scheme: dark;
+        }
+
+        .lang-switcher select option {
+            background: rgba(18, 16, 14, 0.98);
+            color: var(--text-main);
+            padding: 10px;
+        }
+
         .btn-reserve:hover {
             background: var(--accent-hover);
             transform: translateY(-2px);
@@ -393,55 +439,66 @@
         <a href="#" class="logo">Aroma<span>.</span></a>
         <nav>
             <ul>
-                <li><a href="#features">Особливості</a></li>
-                <li><a href="#menu">Меню</a></li>
-                <li><a href="#reserve">Бронювання</a></li>
-                <li><a href="#contacts">Контакти</a></li>
+                <li><a href="#features" data-i18n="nav.features">Особливості</a></li>
+                <li><a href="#menu" data-i18n="nav.menu">Меню</a></li>
+                <li><a href="#reserve" data-i18n="nav.reserve">Бронювання</a></li>
+                <li><a href="#contacts" data-i18n="nav.contacts">Контакти</a></li>
             </ul>
         </nav>
-        <a href="#reserve" class="btn-reserve">Забронювати</a>
+        <div class="lang-switcher">
+            <label for="languageSelect" class="lang-label" data-i18n="language">Мова</label>
+            <select id="languageSelect" aria-label="Language selector">
+                <option value="uk">Українська</option>
+                <option value="en">English</option>
+                <option value="pl">Polski</option>
+                <option value="ru">Русский</option>
+                <option value="de">Deutsch</option>
+                <option value="fr">Français</option>
+            </select>
+        </div>
+        <a href="#reserve" class="btn-reserve" data-i18n="button.reserve">Забронювати</a>
     </header>
 
     <!-- Головна секція -->
     <section class="hero">
         <div class="hero-content">
-            <p class="hero-subtitle">Свіжообсмажена кава та авторські напої</p>
-            <h1>Атмосфера затишку та справжнього смаку</h1>
-            <p>Завітайте до Aroma Coffee за любимою кавою, вишуканим чаєм, прохолодними коктейлями та десертами.</p>
-            <a href="#menu" class="btn-reserve" style="padding: 14px 32px; font-size: 1rem;">Переглянути меню</a>
+            <p class="hero-subtitle" data-i18n="hero.subtitle">Свіжообсмажена кава та авторські напої</p>
+            <h1 data-i18n="hero.title">Атмосфера затишку та справжнього смаку</h1>
+            <p data-i18n="hero.text">Завітайте до Aroma Coffee за любимою кавою, вишуканим чаєм, прохолодними коктейлями та десертами.</p>
+            <a href="#menu" class="btn-reserve" data-i18n="hero.button" style="padding: 14px 32px; font-size: 1rem;">Переглянути меню</a>
         </div>
     </section>
 
     <!-- Особливості кав'ярні -->
     <section class="section" id="features">
         <div class="section-title">
-            <p>Чому саме ми</p>
-            <h2>В нашій кав'ярні є...</h2>
+            <p data-i18n="features.label">Чому саме ми</p>
+            <h2 data-i18n="features.heading">В нашій кав'ярні є...</h2>
         </div>
 
         <div class="features-grid">
             <div class="feature-card">
                 <i class="fa-solid fa-seedling feature-icon"></i>
-                <h3>Власне обсмаження</h3>
-                <p>Ми використовуємо лише спешелті-зерна 100% Арабіки та обсмажуємо їх невеликими партіями щотижня.</p>
+                <h3 data-i18n="feature.roast.title">Власне обсмаження</h3>
+                <p data-i18n="feature.roast.text">Ми використовуємо лише спешелті-зерна 100% Арабіки та обсмажуємо їх невеликими партіями щотижня.</p>
             </div>
 
             <div class="feature-card">
                 <i class="fa-solid fa-dog feature-icon"></i>
-                <h3>Pet-Friendly зона</h3>
-                <p>Завітайте до нас із чотирилапим другом! Для питомців завжди є свіжа вода та смаколики.</p>
+                <h3 data-i18n="feature.pet.title">Pet-Friendly зона</h3>
+                <p data-i18n="feature.pet.text">Завітайте до нас із чотирилапим другом! Для питомців завжди є свіжа вода та смаколики.</p>
             </div>
 
             <div class="feature-card">
                 <i class="fa-solid fa-laptop-code feature-icon"></i>
-                <h3>Coworking-зони</h3>
-                <p>Розетки біля кожного столика, швидкісний Wi-Fi та зручні крісла для комфортної роботи або навчання.</p>
+                <h3 data-i18n="feature.coworking.title">Coworking-зони</h3>
+                <p data-i18n="feature.coworking.text">Розетки біля кожного столика, швидкісний Wi-Fi та зручні крісла для комфортної роботи або навчання.</p>
             </div>
 
             <div class="feature-card">
                 <i class="fa-solid fa-mug-hot feature-icon"></i>
-                <h3>Альтернативне молоко</h3>
-                <p>Готуємо каву на вівсяному, мигдалевому, кокосовому або безлактозному молоці без доплати.</p>
+                <h3 data-i18n="feature.milk.title">Альтернативне молоко</h3>
+                <p data-i18n="feature.milk.text">Готуємо каву на вівсяному, мигдалевому, кокосовому або безлактозному молоці без доплати.</p>
             </div>
         </div>
     </section>
@@ -449,21 +506,20 @@
     <!-- Повне Меню -->
     <section class="section" id="menu" style="background: var(--surface-color);">
         <div class="section-title">
-            <p>Наш асортимент</p>
-            <h2>Авторське Меню</h2>
+            <p data-i18n="menu.label">Наш асортимент</p>
+            <h2 data-i18n="menu.heading">Авторське Меню</h2>
         </div>
 
-        <!-- КАТЕГОРІЯ 1: Кава та Десерти -->
-        <h3 class="category-heading"><i class="fa-solid fa-mug-saucer"></i> Кава та Десерти</h3>
+        <h3 class="category-heading" data-i18n="menu.category.coffee"><i class="fa-solid fa-mug-saucer"></i> Кава та Десерти</h3>
         <div class="menu-grid">
             <div class="menu-card">
                 <img src="https://images.unsplash.com/photo-1510591509098-f4fdc6d0ff04?auto=format&fit=crop&w=600&q=80" alt="Еспресо">
                 <div class="menu-card-info">
                     <div class="menu-card-header">
-                        <h3 class="menu-card-title">Еспресо Доппіо</h3>
+                        <h3 class="menu-card-title" data-i18n="menu.espresso.title">Еспресо Доппіо</h3>
                         <span class="menu-card-price">55 ₴</span>
                     </div>
-                    <p class="menu-card-desc">Подвійна порція насиченої кави з густою пінкою та яскравою кислинкою.</p>
+                    <p class="menu-card-desc" data-i18n="menu.espresso.text">Подвійна порція насиченої кави з густою пінкою та яскравою кислинкою.</p>
                 </div>
             </div>
 
@@ -471,10 +527,10 @@
                 <img src="https://images.unsplash.com/photo-1534778101976-62847782c213?auto=format&fit=crop&w=600&q=80" alt="Капучино">
                 <div class="menu-card-info">
                     <div class="menu-card-header">
-                        <h3 class="menu-card-title">Капучино</h3>
+                        <h3 class="menu-card-title" data-i18n="menu.cappuccino.title">Капучино</h3>
                         <span class="menu-card-price">75 ₴</span>
                     </div>
-                    <p class="menu-card-desc">Класичний баланс міцного еспресо та ніжне збите молоко.</p>
+                    <p class="menu-card-desc" data-i18n="menu.cappuccino.text">Класичний баланс міцного еспресо та ніжне збите молоко.</p>
                 </div>
             </div>
 
@@ -482,10 +538,10 @@
                 <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=600&q=80" alt="Флет Вайт">
                 <div class="menu-card-info">
                     <div class="menu-card-header">
-                        <h3 class="menu-card-title">Флет Вайт</h3>
+                        <h3 class="menu-card-title" data-i18n="menu.flatwhite.title">Флет Вайт</h3>
                         <span class="menu-card-price">85 ₴</span>
                     </div>
-                    <p class="menu-card-desc">Подвійний еспресо із тонким шаром шовковистого молока.</p>
+                    <p class="menu-card-desc" data-i18n="menu.flatwhite.text">Подвійний еспресо із тонким шаром шовковистого молока.</p>
                 </div>
             </div>
 
@@ -493,10 +549,10 @@
                 <img src="https://images.unsplash.com/photo-1572442388796-11668a67e53d?auto=format&fit=crop&w=600&q=80" alt="Лате">
                 <div class="menu-card-info">
                     <div class="menu-card-header">
-                        <h3 class="menu-card-title">Лате Макіато</h3>
+                        <h3 class="menu-card-title" data-i18n="menu.latte.title">Лате Макіато</h3>
                         <span class="menu-card-price">80 ₴</span>
                     </div>
-                    <p class="menu-card-desc">Ніжний та м'який кавовий напій із високою молочною піною.</p>
+                    <p class="menu-card-desc" data-i18n="menu.latte.text">Ніжний та м'який кавовий напій із високою молочною піною.</p>
                 </div>
             </div>
 
@@ -504,10 +560,10 @@
                 <img src="https://images.unsplash.com/photo-1541167760496-1628856ab772?auto=format&fit=crop&w=600&q=80" alt="Раф Лаванда">
                 <div class="menu-card-info">
                     <div class="menu-card-header">
-                        <h3 class="menu-card-title">Лавандовий Раф</h3>
+                        <h3 class="menu-card-title" data-i18n="menu.lavender.title">Лавандовий Раф</h3>
                         <span class="menu-card-price">95 ₴</span>
                     </div>
-                    <p class="menu-card-desc">Вершково-кавовий напій із додаванням натурального лавандового цукру.</p>
+                    <p class="menu-card-desc" data-i18n="menu.lavender.text">Вершково-кавовий напій із додаванням натурального лавандового цукру.</p>
                 </div>
             </div>
 
@@ -515,10 +571,10 @@
                 <img src="https://images.unsplash.com/photo-1517701604599-bb29b565090c?auto=format&fit=crop&w=600&q=80" alt="Фільтр-кава">
                 <div class="menu-card-info">
                     <div class="menu-card-header">
-                        <h3 class="menu-card-title">Фільтр-Кава Batch Brew</h3>
+                        <h3 class="menu-card-title" data-i18n="menu.filter.title">Фільтр-Кава Batch Brew</h3>
                         <span class="menu-card-price">65 ₴</span>
                     </div>
-                    <p class="menu-card-desc">Легка кава з багатим фруктово-ягідним букетом смаку.</p>
+                    <p class="menu-card-desc" data-i18n="menu.filter.text">Легка кава з багатим фруктово-ягідним букетом смаку.</p>
                 </div>
             </div>
 
@@ -526,10 +582,10 @@
                 <img src="https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=600&q=80" alt="Круасан">
                 <div class="menu-card-info">
                     <div class="menu-card-header">
-                        <h3 class="menu-card-title">Французький Круасан</h3>
+                        <h3 class="menu-card-title" data-i18n="menu.croissant.title">Французький Круасан</h3>
                         <span class="menu-card-price">65 ₴</span>
                     </div>
-                    <p class="menu-card-desc">Свіжоспечений хрусткий круасан на вершковому маслі.</p>
+                    <p class="menu-card-desc" data-i18n="menu.croissant.text">Свіжоспечений хрусткий круасан на вершковому маслі.</p>
                 </div>
             </div>
 
@@ -537,10 +593,10 @@
                 <img src="https://images.unsplash.com/photo-1565958011703-44f9829ba187?auto=format&fit=crop&w=600&q=80" alt="Фісташковий Тарт">
                 <div class="menu-card-info">
                     <div class="menu-card-header">
-                        <h3 class="menu-card-title">Фісташковий Тарт</h3>
+                        <h3 class="menu-card-title" data-i18n="menu.tart.title">Фісташковий Тарт</h3>
                         <span class="menu-card-price">120 ₴</span>
                     </div>
-                    <p class="menu-card-desc">Пісочна основа, фісташковий крем та свіжі ягоди малини.</p>
+                    <p class="menu-card-desc" data-i18n="menu.tart.text">Пісочна основа, фісташковий крем та свіжі ягоди малини.</p>
                 </div>
             </div>
 
@@ -548,139 +604,60 @@
                 <img src="https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=600&q=80" alt="Брауні">
                 <div class="menu-card-info">
                     <div class="menu-card-header">
-                        <h3 class="menu-card-title">Шоколадний Брауні</h3>
+                        <h3 class="menu-card-title" data-i18n="menu.brownie.title">Шоколадний Брауні</h3>
                         <span class="menu-card-price">90 ₴</span>
                     </div>
-                    <p class="menu-card-desc">Вологий десерт із чорного шоколаду з волоським горіхом та сіллю.</p>
-                </div>
-            </div>
-
-            <div class="menu-card">
-                <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=600&q=80" alt="Сіннабон">
-                <div class="menu-card-info">
-                    <div class="menu-card-header">
-                        <h3 class="menu-card-title">Сінабон з Корицею</h3>
-                        <span class="menu-card-price">85 ₴</span>
-                    </div>
-                    <p class="menu-card-desc">Духмяна здобна булочка з корицею та крем-чизом.</p>
-                </div>
-            </div>
-
-            <div class="menu-card">
-                <img src="https://images.unsplash.com/photo-1587314168485-3236d6710814?auto=format&fit=crop&w=600&q=80" alt="Чизкейк">
-                <div class="menu-card-info">
-                    <div class="menu-card-header">
-                        <h3 class="menu-card-title">Чизкейк Нью-Йорк</h3>
-                        <span class="menu-card-price">110 ₴</span>
-                    </div>
-                    <p class="menu-card-desc">Ніжна сирна текстура на пісочній основі з полуничним соусом.</p>
-                </div>
-            </div>
-
-            <div class="menu-card">
-                <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=600&q=80" alt="Аффогато">
-                <div class="menu-card-info">
-                    <div class="menu-card-header">
-                        <h3 class="menu-card-title">Аффогато</h3>
-                        <span class="menu-card-price">85 ₴</span>
-                    </div>
-                    <p class="menu-card-desc">Кулька ванільного морозива, залита гарячим еспресо.</p>
+                    <p class="menu-card-desc" data-i18n="menu.brownie.text">Вологий десерт із чорного шоколаду з волоським горіхом та сіллю.</p>
                 </div>
             </div>
         </div>
 
-        <!-- КАТЕГОРІЯ 2: Вибір Чайного Сомельє -->
-        <h3 class="category-heading"><i class="fa-solid fa-leaf"></i> Вибір Чайного Сомельє</h3>
+        <h3 class="category-heading" data-i18n="menu.category.tea"><i class="fa-solid fa-leaf"></i> Вибір Чайного Сомельє</h3>
         <div class="menu-grid">
             <div class="menu-card">
-                <img src="https://images.unsplash.com/photo-1576092768241-dec231879fc3?auto=format&fit=crop&w=600&q=80" alt="Чай Матча">
+                <img src="https://images.unsplash.com/photo-1576092768241-dec231879fc3?auto=format&fit=crop&w=600&q=80" alt="Матча Лате">
                 <div class="menu-card-info">
                     <div class="menu-card-header">
-                        <h3 class="menu-card-title">Матча Лате</h3>
+                        <h3 class="menu-card-title" data-i18n="menu.matcha.title">Матча Лате</h3>
                         <span class="menu-card-price">90 ₴</span>
                     </div>
-                    <p class="menu-card-desc">Японський зелений чай церемоніального класу з вівсяним молоком.</p>
+                    <p class="menu-card-desc" data-i18n="menu.matcha.text">Японський зелений чай церемоніального класу з вівсяним молоком.</p>
                 </div>
             </div>
 
             <div class="menu-card">
-                <img src="https://images.unsplash.com/photo-1627435601361-ec25f5b1d0e5?auto=format&fit=crop&w=600&q=80" alt="Зелений чай">
+                <img src="https://images.unsplash.com/photo-1627435601361-ec25f5b1d0e5?auto=format&fit=crop&w=600&q=80" alt="Жасминовий Сенча">
                 <div class="menu-card-info">
                     <div class="menu-card-header">
-                        <h3 class="menu-card-title">Жасминовий Сенча</h3>
+                        <h3 class="menu-card-title" data-i18n="menu.jasmine.title">Жасминовий Сенча</h3>
                         <span class="menu-card-price">70 ₴</span>
                     </div>
-                    <p class="menu-card-desc">Класичний зелений чай із витонченим ароматом квітів жасмину.</p>
+                    <p class="menu-card-desc" data-i18n="menu.jasmine.text">Класичний зелений чай із витонченим ароматом квітів жасмину.</p>
                 </div>
             </div>
 
             <div class="menu-card">
-                <img src="https://images.unsplash.com/photo-1594631252845-29fc4cc8cde9?auto=format&fit=crop&w=600&q=80" alt="Ерл Грей Бергамот">
+                <img src="https://images.unsplash.com/photo-1594631252845-29fc4cc8cde9?auto=format&fit=crop&w=600&q=80" alt="Ерл Грей">
                 <div class="menu-card-info">
                     <div class="menu-card-header">
-                        <h3 class="menu-card-title">Ерл Грей Бергамот</h3>
+                        <h3 class="menu-card-title" data-i18n="menu.earlgrey.title">Ерл Грей Бергамот</h3>
                         <span class="menu-card-price">70 ₴</span>
                     </div>
-                    <p class="menu-card-desc">Насичений чорний високогірний чай з натуральною олією бергамоту.</p>
-                </div>
-            </div>
-
-            <div class="menu-card">
-                <img src="https://images.unsplash.com/photo-1544787219-7f47ccb76574?auto=format&fit=crop&w=600&q=80" alt="Ягідний чай">
-                <div class="menu-card-info">
-                    <div class="menu-card-header">
-                        <h3 class="menu-card-title">Обліпиховий Мікс</h3>
-                        <span class="menu-card-price">85 ₴</span>
-                    </div>
-                    <p class="menu-card-desc">Авторський чай із натуральною обліпихою, імбиром та медом.</p>
-                </div>
-            </div>
-
-            <div class="menu-card">
-                <img src="https://images.unsplash.com/photo-1597481499750-3e6b22637e12?auto=format&fit=crop&w=600&q=80" alt="Трав'яний чай">
-                <div class="menu-card-info">
-                    <div class="menu-card-header">
-                        <h3 class="menu-card-title">Альпійські Трави & М'ята</h3>
-                        <span class="menu-card-price">75 ₴</span>
-                    </div>
-                    <p class="menu-card-desc">Заспокійливий збір із ромашки, чабрецю, м'яти та меліси.</p>
-                </div>
-            </div>
-
-            <div class="menu-card">
-                <img src="https://artfultea.com/cdn/shop/files/0-1_2fd4f135-6d77-4087-8d8d-704f78c47732.jpg?v=1751560887&width=533" alt="Шу Пуер 2018">
-                <div class="menu-card-info">
-                    <div class="menu-card-header">
-                        <h3 class="menu-card-title">Шу Пуер 2018</h3>
-                        <span class="menu-card-price">95 ₴</span>
-                    </div>
-                    <p class="menu-card-desc">Витриманий ферментований чай із глибоким деревним ароматом.</p>
-                </div>
-            </div>
-
-            <div class="menu-card">
-                <img src="https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&w=600&q=80" alt="Фруктовий чай">
-                <div class="menu-card-info">
-                    <div class="menu-card-header">
-                        <h3 class="menu-card-title">Малина & Маракуйя</h3>
-                        <span class="menu-card-price">85 ₴</span>
-                    </div>
-                    <p class="menu-card-desc">Яскравий вітамінний чай із ягід малини та тропічного пюре маракуйї.</p>
+                    <p class="menu-card-desc" data-i18n="menu.earlgrey.text">Насичений чорний високогірний чай з натуральною олією бергамоту.</p>
                 </div>
             </div>
         </div>
 
-        <!-- КАТЕГОРІЯ 3: Прохолодні Коктейлі та Лимонади -->
-        <h3 class="category-heading"><i class="fa-solid fa-glass-water"></i> Прохолодні Коктейлі & Лимонади</h3>
+        <h3 class="category-heading" data-i18n="menu.category.drinks"><i class="fa-solid fa-glass-water"></i> Прохолодні Коктейлі & Лимонади</h3>
         <div class="menu-grid">
             <div class="menu-card">
                 <img src="https://images.unsplash.com/photo-1517701604599-bb29b565090c?auto=format&fit=crop&w=600&q=80" alt="Еспресо Тонік">
                 <div class="menu-card-info">
                     <div class="menu-card-header">
-                        <h3 class="menu-card-title">Еспресо Тонік</h3>
+                        <h3 class="menu-card-title" data-i18n="menu.tonic.title">Еспресо Тонік</h3>
                         <span class="menu-card-price">95 ₴</span>
                     </div>
-                    <p class="menu-card-desc">Подвійний еспресо, ігристий тонік, лід та часточка свіжого лайма.</p>
+                    <p class="menu-card-desc" data-i18n="menu.tonic.text">Подвійний еспресо, ігристий тонік, лід та часточка свіжого лайма.</p>
                 </div>
             </div>
 
@@ -688,10 +665,10 @@
                 <img src="https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&w=600&q=80" alt="Мохіто">
                 <div class="menu-card-info">
                     <div class="menu-card-header">
-                        <h3 class="menu-card-title">Б/А Мохіто Полуничний</h3>
+                        <h3 class="menu-card-title" data-i18n="menu.mojito.title">Б/А Мохіто Полуничний</h3>
                         <span class="menu-card-price">90 ₴</span>
                     </div>
-                    <p class="menu-card-desc">Свіжа м'ята, тростинний цукор, полуничне пюре, содова та лід.</p>
+                    <p class="menu-card-desc" data-i18n="menu.mojito.text">Свіжа м'ята, тростинний цукор, полуничне пюре, содова та лід.</p>
                 </div>
             </div>
 
@@ -699,32 +676,10 @@
                 <img src="https://images.unsplash.com/photo-1621263764928-df1444c5e859?auto=format&fit=crop&w=600&q=80" alt="Лимонад">
                 <div class="menu-card-info">
                     <div class="menu-card-header">
-                        <h3 class="menu-card-title">Лимонад Цитрус-Імбир</h3>
+                        <h3 class="menu-card-title" data-i18n="menu.lemonade.title">Лимонад Цитрус-Імбир</h3>
                         <span class="menu-card-price">80 ₴</span>
                     </div>
-                    <p class="menu-card-desc">Освіжаючий мікс апельсинового та фрешу грейпфрута з імбирним сиропом.</p>
-                </div>
-            </div>
-
-            <div class="menu-card">
-                <img src="https://images.unsplash.com/photo-1556881286-fc6915169721?auto=format&fit=crop&w=600&q=80" alt="Айс Лате">
-                <div class="menu-card-info">
-                    <div class="menu-card-header">
-                        <h3 class="menu-card-title">Айс Карамель Лате</h3>
-                        <span class="menu-card-price">90 ₴</span>
-                    </div>
-                    <p class="menu-card-desc">Холодне молоко, еспресо, домашній карамельний соус та кубики льоду.</p>
-                </div>
-            </div>
-
-            <div class="menu-card">
-                <img src="https://images.unsplash.com/photo-1534353473418-4cfa6c56fd38?auto=format&fit=crop&w=600&q=80" alt="Айс Матча-Тонік">
-                <div class="menu-card-info">
-                    <div class="menu-card-header">
-                        <h3 class="menu-card-title">Айс Матча-Тонік</h3>
-                        <span class="menu-card-price">100 ₴</span>
-                    </div>
-                    <p class="menu-card-desc">Шовковиста зелена матча, тонік Premium та цитрусовий кордіал.</p>
+                    <p class="menu-card-desc" data-i18n="menu.lemonade.text">Освіжаючий мікс апельсинового та фрешу грейпфрута з імбирним сиропом.</p>
                 </div>
             </div>
         </div>
@@ -733,30 +688,30 @@
     <!-- Бронювання -->
     <section class="section" id="reserve">
         <div class="section-title">
-            <p>Завітайте в гості</p>
-            <h2>Забронювати Столик</h2>
+            <p data-i18n="reserve.label">Завітайте в гості</p>
+            <h2 data-i18n="reserve.heading">Забронювати Столик</h2>
         </div>
 
         <div class="reservation-container">
             <form id="bookingForm">
                 <div class="form-group">
-                    <label for="name">Ваше ім'я</label>
+                    <label for="name" data-i18n="booking.name">Ваше ім'я</label>
                     <input type="text" id="name" required placeholder="Олександр">
                 </div>
                 <div class="form-group">
-                    <label for="phone">Номер телефону</label>
+                    <label for="phone" data-i18n="booking.phone">Номер телефону</label>
                     <input type="tel" id="phone" required placeholder="+380 (99) 000-00-00">
                 </div>
                 <div class="form-group">
-                    <label for="guests">Кількість гостей</label>
+                    <label for="guests" data-i18n="booking.guests">Кількість гостей</label>
                     <select id="guests">
-                        <option value="1">1 особа</option>
-                        <option value="2" selected>2 особи</option>
-                        <option value="3-4">3-4 особи</option>
-                        <option value="5+">5+ осіб</option>
+                        <option value="1" data-i18n="booking.option1">1 особа</option>
+                        <option value="2" selected data-i18n="booking.option2">2 особи</option>
+                        <option value="3-4" data-i18n="booking.option3">3-4 особи</option>
+                        <option value="5+" data-i18n="booking.option4">5+ осіб</option>
                     </select>
                 </div>
-                <button type="submit" class="btn-submit">Підтвердити бронювання</button>
+                <button type="submit" class="btn-submit" data-i18n="booking.submit">Підтвердити бронювання</button>
             </form>
         </div>
     </section>
@@ -766,15 +721,15 @@
         <div class="footer-grid">
             <div class="footer-col">
                 <a href="#" class="logo">Aroma<span>.</span></a>
-                <p style="margin-top: 15px;">Ваш затишний куточок зі справжньою кавою, чаєм та атмосферними напоями.</p>
+                <p style="margin-top: 15px;" data-i18n="footer.text">Ваш затишний куточок зі справжньою кавою, чаєм та атмосферними напоями.</p>
             </div>
             <div class="footer-col">
-                <h4>Адреса та Час</h4>
-                <p><i class="fa-solid fa-location-dot"></i> вул. Хрещатик, 15, Київ</p>
-                <p><i class="fa-solid fa-clock"></i> Щодня: 08:00 – 21:00</p>
+                <h4 data-i18n="footer.addressTitle">Адреса та Час</h4>
+                <p><i class="fa-solid fa-location-dot"></i> <span data-i18n="footer.address">вул. Хрещатик, 15, Київ</span></p>
+                <p><i class="fa-solid fa-clock"></i> <span data-i18n="footer.hours">Щодня: 08:00 – 21:00</span></p>
             </div>
             <div class="footer-col">
-                <h4>Ми в соцмережах</h4>
+                <h4 data-i18n="footer.socialTitle">Ми в соцмережах</h4>
                 <div class="socials">
                     <a href="#"><i class="fa-brands fa-instagram"></i></a>
                     <a href="#"><i class="fa-brands fa-telegram"></i></a>
@@ -783,63 +738,519 @@
             </div>
         </div>
         <div class="copyright">
-            <p>© 2026 Aroma Coffee. Всі права захищені.</p>
+            <p data-i18n="footer.copyright">© 2026 Aroma Coffee. Всі права захищені.</p>
         </div>
     </footer>
 
-    <script type="text/javascript">
-  function googleTranslateElementInit() {
-    new google.translate.TranslateElement({
-      pageLanguage: 'uk', // Початкова мова вашого сайту (українська)
-      includedLanguages: 'uk,en,pl', // Мови, які будуть доступні: українська, англійська, польська
-      layout: google.translate.TranslateElement.InlineLayout.SIMPLE
-    }, 'google_translate_element');
-  }
-</script>
-<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-
    <script>
-document.getElementById('bookingForm').addEventListener('submit', function(e) {
-    e.preventDefault();
+    const translations = {
+      uk: {
+        'nav.features': 'Особливості',
+        'nav.menu': 'Меню',
+        'nav.reserve': 'Бронювання',
+        'nav.contacts': 'Контакти',
+        'language': 'Мова',
+        'button.reserve': 'Забронювати',
+        'hero.subtitle': 'Свіжообсмажена кава та авторські напої',
+        'hero.title': 'Атмосфера затишку та справжнього смаку',
+        'hero.text': 'Завітайте до Aroma Coffee за любимою кавою, вишуканим чаєм, прохолодними коктейлями та десертами.',
+        'hero.button': 'Переглянути меню',
+        'features.label': 'Чому саме ми',
+        'features.heading': 'В нашій кав\'ярні є...',
+        'feature.roast.title': 'Власне обсмаження',
+        'feature.roast.text': 'Ми використовуємо лише спешелті-зерна 100% Арабіки та обсмажуємо їх невеликими партіями щотижня.',
+        'feature.pet.title': 'Pet-Friendly зона',
+        'feature.pet.text': 'Завітайте до нас із чотирилапим другом! Для питомців завжди є свіжа вода та смаколики.',
+        'feature.coworking.title': 'Coworking-зони',
+        'feature.coworking.text': 'Розетки біля кожного столика, швидкісний Wi-Fi та зручні крісла для комфортної роботи або навчання.',
+        'feature.milk.title': 'Альтернативне молоко',
+        'feature.milk.text': 'Готуємо каву на вівсяному, мигдалевому, кокосовому або безлактозному молоці без доплати.',
+        'menu.label': 'Наш асортимент',
+        'menu.heading': 'Авторське Меню',
+        'menu.category.coffee': 'Кава та Десерти',
+        'menu.category.tea': 'Вибір Чайного Сомельє',
+        'menu.category.drinks': 'Прохолодні Коктейлі & Лимонади',
+        'menu.espresso.title': 'Еспресо Доппіо',
+        'menu.espresso.text': 'Подвійна порція насиченої кави з густою пінкою та яскравою кислинкою.',
+        'menu.cappuccino.title': 'Капучино',
+        'menu.cappuccino.text': 'Класичний баланс міцного еспресо та ніжне збите молоко.',
+        'menu.flatwhite.title': 'Флет Вайт',
+        'menu.flatwhite.text': 'Подвійний еспресо із тонким шаром шовковистого молока.',
+        'menu.latte.title': 'Лате Макіато',
+        'menu.latte.text': 'Ніжний та м\'який кавовий напій із високою молочною піною.',
+        'menu.lavender.title': 'Лавандовий Раф',
+        'menu.lavender.text': 'Вершково-кавовий напій із додаванням натурального лавандового цукру.',
+        'menu.filter.title': 'Фільтр-Кава Batch Brew',
+        'menu.filter.text': 'Легка кава з багатим фруктово-ягідним букетом смаку.',
+        'menu.croissant.title': 'Французький Круасан',
+        'menu.croissant.text': 'Свіжоспечений хрусткий круасан на вершковому маслі.',
+        'menu.tart.title': 'Фісташковий Тарт',
+        'menu.tart.text': 'Пісочна основа, фісташковий крем та свіжі ягоди малини.',
+        'menu.brownie.title': 'Шоколадний Брауні',
+        'menu.brownie.text': 'Вологий десерт із чорного шоколаду з волоським горіхом та сіллю.',
+        'menu.matcha.title': 'Матча Лате',
+        'menu.matcha.text': 'Японський зелений чай церемоніального класу з вівсяним молоком.',
+        'menu.jasmine.title': 'Жасминовий Сенча',
+        'menu.jasmine.text': 'Класичний зелений чай із витонченим ароматом квітів жасмину.',
+        'menu.earlgrey.title': 'Ерл Грей Бергамот',
+        'menu.earlgrey.text': 'Насичений чорний високогірний чай з натуральною олією бергамоту.',
+        'menu.tonic.title': 'Еспресо Тонік',
+        'menu.tonic.text': 'Подвійний еспресо, ігристий тонік, лід та часточка свіжого лайма.',
+        'menu.mojito.title': 'Б/А Мохіто Полуничний',
+        'menu.mojito.text': 'Свіжа м\'ята, тростинний цукор, полуничне пюре, содова та лід.',
+        'menu.lemonade.title': 'Лимонад Цитрус-Імбир',
+        'menu.lemonade.text': 'Освіжаючий мікс апельсинового та фрешу грейпфрута з імбирним сиропом.',
+        'reserve.label': 'Завітайте в гості',
+        'reserve.heading': 'Забронювати Столик',
+        'booking.name': 'Ваше ім\'я',
+        'booking.phone': 'Номер телефону',
+        'booking.guests': 'Кількість гостей',
+        'booking.option1': '1 особа',
+        'booking.option2': '2 особи',
+        'booking.option3': '3-4 особи',
+        'booking.option4': '5+ осіб',
+        'booking.submit': 'Підтвердити бронювання',
+        'footer.text': 'Ваш затишний куточок зі справжньою кавою, чаєм та атмосферними напоями.',
+        'footer.addressTitle': 'Адреса та Час',
+        'footer.address': 'вул. Хрещатик, 15, Київ',
+        'footer.hours': 'Щодня: 08:00 – 21:00',
+        'footer.socialTitle': 'Ми в соцмережах',
+        'footer.copyright': '© 2026 Aroma Coffee. Всі права захищені.'
+      },
+      en: {
+        'nav.features': 'Features',
+        'nav.menu': 'Menu',
+        'nav.reserve': 'Reservation',
+        'nav.contacts': 'Contacts',
+        'language': 'Language',
+        'button.reserve': 'Book a table',
+        'hero.subtitle': 'Freshly roasted coffee and signature drinks',
+        'hero.title': 'A cozy atmosphere and real flavor',
+        'hero.text': 'Visit Aroma Coffee for your favorite coffee, exquisite tea, refreshing cocktails, and desserts.',
+        'hero.button': 'View menu',
+        'features.label': 'Why us',
+        'features.heading': 'Our coffee house has...',
+        'feature.roast.title': 'In-house roasting',
+        'feature.roast.text': 'We use only 100% Arabica specialty beans and roast them in small weekly batches.',
+        'feature.pet.title': 'Pet-friendly zone',
+        'feature.pet.text': 'Come visit with your four-legged friend! Fresh water and treats are always available for pets.',
+        'feature.coworking.title': 'Coworking zones',
+        'feature.coworking.text': 'Sockets at every table, fast Wi-Fi, and comfortable chairs for work or study.',
+        'feature.milk.title': 'Alternative milk',
+        'feature.milk.text': 'We prepare coffee with oat, almond, coconut, or lactose-free milk at no extra charge.',
+        'menu.label': 'Our range',
+        'menu.heading': 'Signature Menu',
+        'menu.category.coffee': 'Coffee & Desserts',
+        'menu.category.tea': 'Tea Sommelier Selection',
+        'menu.category.drinks': 'Cold Cocktails & Lemonades',
+        'menu.espresso.title': 'Espresso Doppio',
+        'menu.espresso.text': 'A double portion of rich coffee with dense crema and bright acidity.',
+        'menu.cappuccino.title': 'Cappuccino',
+        'menu.cappuccino.text': 'Classic balance of strong espresso and silky milk foam.',
+        'menu.flatwhite.title': 'Flat White',
+        'menu.flatwhite.text': 'Double espresso with a thin layer of velvety milk.',
+        'menu.latte.title': 'Latte Macchiato',
+        'menu.latte.text': 'A soft and delicate coffee drink with a high milk foam layer.',
+        'menu.lavender.title': 'Lavender Raf',
+        'menu.lavender.text': 'Creamy coffee drink with natural lavender sugar.',
+        'menu.filter.title': 'Filter Coffee Batch Brew',
+        'menu.filter.text': 'A light coffee with a rich fruity berry bouquet.',
+        'menu.croissant.title': 'French Croissant',
+        'menu.croissant.text': 'Freshly baked buttery croissant with a crisp texture.',
+        'menu.tart.title': 'Pistachio Tart',
+        'menu.tart.text': 'Shortcrust pastry, pistachio cream, and fresh raspberry berries.',
+        'menu.brownie.title': 'Chocolate Brownie',
+        'menu.brownie.text': 'Moist chocolate dessert with walnuts and a touch of sea salt.',
+        'menu.matcha.title': 'Matcha Latte',
+        'menu.matcha.text': 'Ceremonial-grade Japanese green tea with oat milk.',
+        'menu.jasmine.title': 'Jasmine Sencha',
+        'menu.jasmine.text': 'Classic green tea with a delicate jasmine floral aroma.',
+        'menu.earlgrey.title': 'Earl Grey Bergamot',
+        'menu.earlgrey.text': 'Strong black high-mountain tea with natural bergamot oil.',
+        'menu.tonic.title': 'Espresso Tonic',
+        'menu.tonic.text': 'Double espresso, sparkling tonic, ice, and a slice of fresh lime.',
+        'menu.mojito.title': 'Strawberry Non-Alcoholic Mojito',
+        'menu.mojito.text': 'Fresh mint, cane sugar, strawberry puree, soda, and ice.',
+        'menu.lemonade.title': 'Citrus-Ginger Lemonade',
+        'menu.lemonade.text': 'Refreshing mix of orange and grapefruit juice with ginger syrup.',
+        'reserve.label': 'Visit us',
+        'reserve.heading': 'Book a Table',
+        'booking.name': 'Your name',
+        'booking.phone': 'Phone number',
+        'booking.guests': 'Guests',
+        'booking.option1': '1 guest',
+        'booking.option2': '2 guests',
+        'booking.option3': '3-4 guests',
+        'booking.option4': '5+ guests',
+        'booking.submit': 'Confirm reservation',
+        'footer.text': 'Your cozy corner with real coffee, tea, and atmospheric drinks.',
+        'footer.addressTitle': 'Address & Hours',
+        'footer.address': 'Khreshchatyk St., 15, Kyiv',
+        'footer.hours': 'Daily: 08:00 – 21:00',
+        'footer.socialTitle': 'Follow us',
+        'footer.copyright': '© 2026 Aroma Coffee. All rights reserved.'
+      },
+      pl: {
+        'nav.features': 'Atuty',
+        'nav.menu': 'Menu',
+        'nav.reserve': 'Rezerwacja',
+        'nav.contacts': 'Kontakt',
+        'language': 'Język',
+        'button.reserve': 'Zarezerwuj stolik',
+        'hero.subtitle': 'Świeżo palona kawa i autorskie napoje',
+        'hero.title': 'Atmosfera ciepła i prawdziwego smaku',
+        'hero.text': 'Zajrzyj do Aroma Coffee po ulubioną kawę, wyrafinowaną herbatę, orzeźwiające koktajle i desery.',
+        'hero.button': 'Zobacz menu',
+        'features.label': 'Dlaczego my',
+        'features.heading': 'W naszej kawiarni znajdziesz...',
+        'feature.roast.title': 'Własne palenie',
+        'feature.roast.text': 'Używamy tylko ziaren Specialty 100% Arabica i palimy je małymi partiami co tydzień.',
+        'feature.pet.title': 'Strefa dla zwierząt',
+        'feature.pet.text': 'Zajrzyjcie z czworonożnym przyjacielem! Dla pupili zawsze jest świeża woda i przekąski.',
+        'feature.coworking.title': 'Strefy coworkingowe',
+        'feature.coworking.text': 'Gniazdka przy każdym stoliku, szybki Wi-Fi i wygodne krzesła do pracy lub nauki.',
+        'feature.milk.title': 'Mleko alternatywne',
+        'feature.milk.text': 'Przygotowujemy kawę na mleku owsianym, migdałowym, kokosowym lub bezlaktozowym bez dopłaty.',
+        'menu.label': 'Nasza oferta',
+        'menu.heading': 'Autorskie menu',
+        'menu.category.coffee': 'Kawa i Desery',
+        'menu.category.tea': 'Wybór Herbacianego Sommeliera',
+        'menu.category.drinks': 'Ochłodzące Koktajle i Lemoniady',
+        'menu.espresso.title': 'Espresso Doppio',
+        'menu.espresso.text': 'Podwójna porcja bogatej kawy z gęstą pianą i wyraźną kwaskowatością.',
+        'menu.cappuccino.title': 'Cappuccino',
+        'menu.cappuccino.text': 'Klasyczna równowaga mocnego espresso i delikatnej bitej śmietanki.',
+        'menu.flatwhite.title': 'Flat White',
+        'menu.flatwhite.text': 'Podwójne espresso z cienką warstwą aksamitnego mleka.',
+        'menu.latte.title': 'Latte Macchiato',
+        'menu.latte.text': 'Delikatny i miękki napój kawowy z wysoką warstwą mlecznej pianki.',
+        'menu.lavender.title': 'Lawendowy Raf',
+        'menu.lavender.text': 'Kawowy napój z dodatkiem naturalnego cukru lawendowego.',
+        'menu.filter.title': 'Kawa filtrowana Batch Brew',
+        'menu.filter.text': 'Lekka kawa z bogatym owocowo-owocowym bukietem aromatu.',
+        'menu.croissant.title': 'Francuski Croissant',
+        'menu.croissant.text': 'Świeżo upieczony chrupiący croissant z masłem.',
+        'menu.tart.title': 'Tarta Orzechowa',
+        'menu.tart.text': 'Krucha baza, krem pistacjowy i świeże maliny.',
+        'menu.brownie.title': 'Czekoladowy Brownie',
+        'menu.brownie.text': 'Mocno wilgotny deser z ciemnej czekolady z orzechami włoskimi i solą.',
+        'menu.matcha.title': 'Matcha Latte',
+        'menu.matcha.text': 'Japońska zielona herbata ceremonialna z mlekiem owsianym.',
+        'menu.jasmine.title': 'Jaśminowy Sencha',
+        'menu.jasmine.text': 'Klasyczna zielona herbata z delikatnym aromatem jaśminu.',
+        'menu.earlgrey.title': 'Earl Grey Bergamotka',
+        'menu.earlgrey.text': 'Gęsta czarna herbata wysokogórska z naturalnym olejkiem bergamotki.',
+        'menu.tonic.title': 'Espresso Tonic',
+        'menu.tonic.text': 'Podwójne espresso, musujący tonik, lód i plaster świeżego limonka.',
+        'menu.mojito.title': 'Truskawkowy Mojito Bezalkoholowe',
+        'menu.mojito.text': 'Świeża mięta, cukier trzcinowy, puree truskawkowe, soda i lód.',
+        'menu.lemonade.title': 'Cytrusowo-Imbirowa Lemoniada',
+        'menu.lemonade.text': 'Orzeźwiająca mieszanka soku pomarańczowego i grejpfruta z syropem imbirowym.',
+        'reserve.label': 'Wpadnij do nas',
+        'reserve.heading': 'Zarezerwuj stolik',
+        'booking.name': 'Twoje imię',
+        'booking.phone': 'Numer telefonu',
+        'booking.guests': 'Ilość gości',
+        'booking.option1': '1 osoba',
+        'booking.option2': '2 osoby',
+        'booking.option3': '3-4 osoby',
+        'booking.option4': '5+ osób',
+        'booking.submit': 'Potwierdź rezerwację',
+        'footer.text': 'Twój przytulny kącik z prawdziwą kawą, herbatą i klimatycznymi napojami.',
+        'footer.addressTitle': 'Adres i godziny',
+        'footer.address': 'ul. Chreszczatyk 15, Kijów',
+        'footer.hours': 'Codziennie: 08:00 – 21:00',
+        'footer.socialTitle': 'Śledź nas',
+        'footer.copyright': '© 2026 Aroma Coffee. Wszelkie prawa zastrzeżone.'
+      },
+      ru: {
+        'nav.features': 'Особенности',
+        'nav.menu': 'Меню',
+        'nav.reserve': 'Бронирование',
+        'nav.contacts': 'Контакты',
+        'language': 'Язык',
+        'button.reserve': 'Забронировать',
+        'hero.subtitle': 'Свежемолотый кофе и авторские напитки',
+        'hero.title': 'Атмосфера уюта и настоящего вкуса',
+        'hero.text': 'Загляните в Aroma Coffee за любимым кофе, изысканным чаем, освежающими коктейлями и десертами.',
+        'hero.button': 'Посмотреть меню',
+        'features.label': 'Почему мы',
+        'features.heading': 'В нашей кофейне есть...',
+        'feature.roast.title': 'Собственная обжарка',
+        'feature.roast.text': 'Мы используем только спешелти-зерна 100% Арабики и обжариваем их небольшими партиями каждую неделю.',
+        'feature.pet.title': 'Pet-Friendly зона',
+        'feature.pet.text': 'Заходите к нам вместе с четвероногим другом! Для питомцев всегда есть свежая вода и лакомства.',
+        'feature.coworking.title': 'Coworking-зоны',
+        'feature.coworking.text': 'Розетки у каждого столика, быстрый Wi-Fi и удобные кресла для комфортной работы или обучения.',
+        'feature.milk.title': 'Альтернативное молоко',
+        'feature.milk.text': 'Готовим кофе на овсяном, миндальном, кокосовом или безлактозном молоке без доплаты.',
+        'menu.label': 'Наш ассортимент',
+        'menu.heading': 'Авторское меню',
+        'menu.category.coffee': 'Кофе и Десерты',
+        'menu.category.tea': 'Выбор Чайного Сомелье',
+        'menu.category.drinks': 'Холодные Коктейли и Лимонады',
+        'menu.espresso.title': 'Эспрессо Доппио',
+        'menu.espresso.text': 'Двойная порция насыщенного кофе с густой пенкой и яркой кислинкой.',
+        'menu.cappuccino.title': 'Капучино',
+        'menu.cappuccino.text': 'Классический баланс крепкого эспрессо и нежного вспененного молока.',
+        'menu.flatwhite.title': 'Флет Вайт',
+        'menu.flatwhite.text': 'Двойной эспрессо с тонким слоем шелковистого молока.',
+        'menu.latte.title': 'Латте Макиато',
+        'menu.latte.text': 'Нежный и мягкий кофейный напиток с высоким слоем молочной пены.',
+        'menu.lavender.title': 'Лавандовый Раф',
+        'menu.lavender.text': 'Сливочно-кофейный напиток с добавлением натурального лавандового сахара.',
+        'menu.filter.title': 'Фильтр-Кофе Batch Brew',
+        'menu.filter.text': 'Легкий кофе с богатым фруктово-ягодным букетом вкуса.',
+        'menu.croissant.title': 'Французский Круассан',
+        'menu.croissant.text': 'Свежеспеченный хрустящий круассан со сливочным маслом.',
+        'menu.tart.title': 'Фисташковый Тарт',
+        'menu.tart.text': 'Песочная основа, фисташковый крем и свежие ягоды малины.',
+        'menu.brownie.title': 'Шоколадный Брауни',
+        'menu.brownie.text': 'Влажный десерт из черного шоколада с грецким орехом и солью.',
+        'menu.matcha.title': 'Матча Латте',
+        'menu.matcha.text': 'Японский зеленый чай церемониального класса с овсяным молоком.',
+        'menu.jasmine.title': 'Жасминовый Сенча',
+        'menu.jasmine.text': 'Классический зеленый чай с тонким ароматом жасмина.',
+        'menu.earlgrey.title': 'Эрл Грей Бергамот',
+        'menu.earlgrey.text': 'Насыщенный черный чай с натуральным маслом бергамота.',
+        'menu.tonic.title': 'Эспрессо Тоник',
+        'menu.tonic.text': 'Двойной эспрессо, игристый тоник, лед и долька свежего лайма.',
+        'menu.mojito.title': 'Б/А Мохито Клубничный',
+        'menu.mojito.text': 'Свежая мята, тростниковый сахар, клубничное пюре, сода и лед.',
+        'menu.lemonade.title': 'Лимонад Цитрус-Имбирь',
+        'menu.lemonade.text': 'Освежающая смесь апельсинового и грейпфрутового сока с имбирным сиропом.',
+        'reserve.label': 'Загляните в гости',
+        'reserve.heading': 'Забронировать столик',
+        'booking.name': 'Ваше имя',
+        'booking.phone': 'Номер телефона',
+        'booking.guests': 'Количество гостей',
+        'booking.option1': '1 человек',
+        'booking.option2': '2 человека',
+        'booking.option3': '3-4 человека',
+        'booking.option4': '5+ человек',
+        'booking.submit': 'Подтвердить бронирование',
+        'footer.text': 'Ваш уютный уголок с настоящим кофе, чаем и атмосферными напитками.',
+        'footer.addressTitle': 'Адрес и Время',
+        'footer.address': 'ул. Хрещатик, 15, Киев',
+        'footer.hours': 'Ежедневно: 08:00 – 21:00',
+        'footer.socialTitle': 'Мы в соцсетях',
+        'footer.copyright': '© 2026 Aroma Coffee. Все права защищены.'
+      },
+      de: {
+        'nav.features': 'Merkmale',
+        'nav.menu': 'Menü',
+        'nav.reserve': 'Reservierung',
+        'nav.contacts': 'Kontakt',
+        'language': 'Sprache',
+        'button.reserve': 'Tisch reservieren',
+        'hero.subtitle': 'Frisch gerösteter Kaffee und Spezialgetränke',
+        'hero.title': 'Atmosphäre von Gemütlichkeit und echtem Geschmack',
+        'hero.text': 'Besuchen Sie Aroma Coffee für Ihren Lieblingskaffee, feinen Tee, erfrischende Cocktails und Desserts.',
+        'hero.button': 'Menü ansehen',
+        'features.label': 'Warum wir',
+        'features.heading': 'Unsere Kaffeebar bietet...',
+        'feature.roast.title': 'Eigene Röstung',
+        'feature.roast.text': 'Wir verwenden nur 100 % Arabica-Spezialbohnen und rösten sie in kleinen wöchentlichen Chargen.',
+        'feature.pet.title': 'Hundefreundlicher Bereich',
+        'feature.pet.text': 'Kommen Sie mit Ihrem Vierbeiner vorbei! Für Haustiere gibt es immer frisches Wasser und Leckereien.',
+        'feature.coworking.title': 'Coworking-Bereiche',
+        'feature.coworking.text': 'Steckdosen an jedem Tisch, schnelles WLAN und bequeme Stühle für Arbeit oder Lernen.',
+        'feature.milk.title': 'Alternative Milch',
+        'feature.milk.text': 'Wir bereiten Kaffee mit Hafer-, Mandel-, Kokos- oder laktosefreier Milch ohne Aufpreis zu.',
+        'menu.label': 'Unser Sortiment',
+        'menu.heading': 'Signature-Menü',
+        'menu.category.coffee': 'Kaffee & Desserts',
+        'menu.category.tea': 'Tee-Sommelier-Auswahl',
+        'menu.category.drinks': 'Kalte Cocktails & Limonaden',
+        'menu.espresso.title': 'Espresso Doppio',
+        'menu.espresso.text': 'Doppelte Portion reichen Kaffees mit dicker Crema und heller Säure.',
+        'menu.cappuccino.title': 'Cappuccino',
+        'menu.cappuccino.text': 'Klassische Harmonie aus starkem Espresso und cremiger Milch.',
+        'menu.flatwhite.title': 'Flat White',
+        'menu.flatwhite.text': 'Doppelter Espresso mit einer dünnen Schicht samtiger Milch.',
+        'menu.latte.title': 'Latte Macchiato',
+        'menu.latte.text': 'Ein weicher, delikater Kaffee mit einer hohen Milchschaumschicht.',
+        'menu.lavender.title': 'Lavendel-Raf',
+        'menu.lavender.text': 'Creamy coffee drink with natural lavender sugar.',
+        'menu.filter.title': 'Filterkaffee Batch Brew',
+        'menu.filter.text': 'Ein leichter Kaffee mit reichem fruchtig-beerigem Aroma.',
+        'menu.croissant.title': 'Französisches Croissant',
+        'menu.croissant.text': 'Frisch gebackenes, knuspriges Buttercroissant.',
+        'menu.tart.title': 'Pistazientarte',
+        'menu.tart.text': 'Mürbeteig, Pistaziencreme und frische Himbeeren.',
+        'menu.brownie.title': 'Schokoladen-Brownie',
+        'menu.brownie.text': 'Feuchter Schokoladen-Dessert mit Walnüssen und einer Prise Meersalz.',
+        'menu.matcha.title': 'Matcha Latte',
+        'menu.matcha.text': 'Japanischer Grüntee von hohem Standard mit Hafermilch.',
+        'menu.jasmine.title': 'Jasmin Sencha',
+        'menu.jasmine.text': 'Klassischer Grüntee mit delikatem Jasmin-Aroma.',
+        'menu.earlgrey.title': 'Earl Grey Bergamotte',
+        'menu.earlgrey.text': 'Starker schwarzer Hochgebirgs-Tee mit natürlichem Bergamottöl.',
+        'menu.tonic.title': 'Espresso Tonic',
+        'menu.tonic.text': 'Doppelter Espresso, sprudelnder Tonic, Eis und eine Scheibe frischer Limette.',
+        'menu.mojito.title': 'Erdbeer-Mojito ohne Alkohol',
+        'menu.mojito.text': 'Frische Minze, Rohrzucker, Erdbeerpüree, Soda und Eis.',
+        'menu.lemonade.title': 'Zitrus-Ingwer-Limonade',
+        'menu.lemonade.text': 'Erfrischender Mix aus Orangensaft und Grapefruitsaft mit Ingwersirup.',
+        'reserve.label': 'Besuchen Sie uns',
+        'reserve.heading': 'Tisch reservieren',
+        'booking.name': 'Ihr Name',
+        'booking.phone': 'Telefonnummer',
+        'booking.guests': 'Anzahl der Gäste',
+        'booking.option1': '1 Person',
+        'booking.option2': '2 Personen',
+        'booking.option3': '3-4 Personen',
+        'booking.option4': '5+ Personen',
+        'booking.submit': 'Reservierung bestätigen',
+        'footer.text': 'Ihr gemütlicher Ort mit echtem Kaffee, Tee und stimmungsvollen Getränken.',
+        'footer.addressTitle': 'Adresse & Öffnungszeiten',
+        'footer.address': 'Chreschtschatyk Str. 15, Kiew',
+        'footer.hours': 'Täglich: 08:00 – 21:00',
+        'footer.socialTitle': 'Folgen Sie uns',
+        'footer.copyright': '© 2026 Aroma Coffee. Alle Rechte vorbehalten.'
+      },
+      fr: {
+        'nav.features': 'Avantages',
+        'nav.menu': 'Menu',
+        'nav.reserve': 'Réservation',
+        'nav.contacts': 'Contacts',
+        'language': 'Langue',
+        'button.reserve': 'Réserver une table',
+        'hero.subtitle': 'Café fraîchement torréfié et boissons signatures',
+        'hero.title': 'Une atmosphère chaleureuse et un vrai goût',
+        'hero.text': 'Rendez-vous chez Aroma Coffee pour votre café préféré, un thé raffiné, des cocktails rafraîchissants et des desserts.',
+        'hero.button': 'Voir le menu',
+        'features.label': 'Pourquoi nous',
+        'features.heading': 'Notre café propose...',
+        'feature.roast.title': 'Torréfaction maison',
+        'feature.roast.text': 'Nous utilisons uniquement des grains de spécialité 100 % Arabica et les torréfions en petites lots chaque semaine.',
+        'feature.pet.title': 'Espace bienvenu aux animaux',
+        'feature.pet.text': 'Venez avec votre compagnon à quatre pattes ! Il y a toujours de l’eau fraîche et des friandises pour eux.',
+        'feature.coworking.title': 'Zones coworking',
+        'feature.coworking.text': 'Des prises à chaque table, Wi‑Fi rapide et des chaises confortables pour travailler ou étudier.',
+        'feature.milk.title': 'Lait alternatif',
+        'feature.milk.text': 'Nous préparons le café avec du lait d’avoine, d’amande, de coco ou sans lactose sans supplément.',
+        'menu.label': 'Notre gamme',
+        'menu.heading': 'Menu signature',
+        'menu.category.coffee': 'Café & Desserts',
+        'menu.category.tea': 'Sélection du sommelier thé',
+        'menu.category.drinks': 'Cocktails froids & Limonades',
+        'menu.espresso.title': 'Espresso Doppio',
+        'menu.espresso.text': 'Double portion de café riche avec une crème dense et une acidité vive.',
+        'menu.cappuccino.title': 'Cappuccino',
+        'menu.cappuccino.text': 'Équilibre classique entre espresso intense et lait mousseux velouté.',
+        'menu.flatwhite.title': 'Flat White',
+        'menu.flatwhite.text': 'Double espresso avec une fine couche de lait velouté.',
+        'menu.latte.title': 'Latte Macchiato',
+        'menu.latte.text': 'Boisson café douce et délicate avec une couche élevée de mousse de lait.',
+        'menu.lavender.title': 'Raf à la lavande',
+        'menu.lavender.text': 'Boisson de café crémeuse avec du sucre naturel à la lavande.',
+        'menu.filter.title': 'Café filtre Batch Brew',
+        'menu.filter.text': 'Un café léger au bouquet fruité et aux baies généreuses.',
+        'menu.croissant.title': 'Croissant français',
+        'menu.croissant.text': 'Croissant croustillant fraîchement sorti du four au beurre.',
+        'menu.tart.title': 'Tarte aux pistaches',
+        'menu.tart.text': 'Pâte sablée, crème aux pistaches et framboises fraîches.',
+        'menu.brownie.title': 'Brownie au chocolat',
+        'menu.brownie.text': 'Dessert au chocolat moelleux avec des noix et une touche de sel marin.',
+        'menu.matcha.title': 'Matcha Latte',
+        'menu.matcha.text': 'Thé vert japonais de qualité cérémoniale avec du lait d’avoine.',
+        'menu.jasmine.title': 'Sencha au jasmin',
+        'menu.jasmine.text': 'Thé vert classique avec un arôme délicat de jasmin.',
+        'menu.earlgrey.title': 'Earl Grey Bergamote',
+        'menu.earlgrey.text': 'Thé noir puissant des montagnes avec de l’huile naturelle de bergamote.',
+        'menu.tonic.title': 'Espresso Tonic',
+        'menu.tonic.text': 'Double espresso, tonic pétillant, glace et tranche de citron vert.',
+        'menu.mojito.title': 'Mojito sans alcool à la fraise',
+        'menu.mojito.text': 'Menthe fraîche, sucre de canne, purée de fraise, soda et glace.',
+        'menu.lemonade.title': 'Limonade agrumes-gingembre',
+        'menu.lemonade.text': 'Mélange rafraîchissant de jus d’orange et de pamplemousse avec sirop de gingembre.',
+        'reserve.label': 'Venez nous rendre visite',
+        'reserve.heading': 'Réserver une table',
+        'booking.name': 'Votre nom',
+        'booking.phone': 'Numéro de téléphone',
+        'booking.guests': 'Nombre de personnes',
+        'booking.option1': '1 personne',
+        'booking.option2': '2 personnes',
+        'booking.option3': '3-4 personnes',
+        'booking.option4': '5+ personnes',
+        'booking.submit': 'Confirmer la réservation',
+        'footer.text': 'Votre coin confortable avec un vrai café, du thé et des boissons conviviales.',
+        'footer.addressTitle': 'Adresse & horaires',
+        'footer.address': 'Rue Khreshchatyk, 15, Kiev',
+        'footer.hours': 'Tous les jours: 08:00 – 21:00',
+        'footer.socialTitle': 'Suivez-nous',
+        'footer.copyright': '© 2026 Aroma Coffee. Tous droits réservés.'
+      }
+    };
 
-    const name = document.getElementById('name').value;
-    const phone = document.getElementById('phone').value;
-    const guests = document.getElementById('guests').value;
+    const languageSelect = document.getElementById('languageSelect');
 
-    const submitBtn = this.querySelector('.btn-submit');
-    const originalText = submitBtn.textContent;
-    submitBtn.textContent = 'Надсилаємо...';
-    submitBtn.disabled = true;
-
-    fetch('/api/booking', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            name: name,
-            phone: phone,
-            guests: guests
-        })
-    })
-    .then(async response => {
-        if (response.ok) {
-            alert(`Дякуємо, ${name}! Ваше бронювання прийнято.`);
-            this.reset();
-        } else {
-            const errData = await response.json().catch(() => ({}));
-            alert(errData.error || 'Помилка при відправці бронювання.');
+    function setLanguage(lang) {
+      const selected = translations[lang] ? lang : 'uk';
+      document.documentElement.lang = selected;
+      document.querySelectorAll('[data-i18n]').forEach((element) => {
+        const key = element.getAttribute('data-i18n');
+        if (translations[selected][key]) {
+          element.textContent = translations[selected][key];
         }
-    })
-    .catch(error => {
-        console.error('Ошибка:', error);
-        alert('Сталася помилка під час відправки запиту.');
-    })
-    .finally(() => {
-        submitBtn.textContent = originalText;
-        submitBtn.disabled = false;
+      });
+      localStorage.setItem('site-language', selected);
+      languageSelect.value = selected;
+    }
+
+    const savedLanguage = localStorage.getItem('site-language');
+    if (savedLanguage) {
+      setLanguage(savedLanguage);
+    } else {
+      setLanguage('uk');
+    }
+
+    languageSelect.addEventListener('change', function () {
+      setLanguage(this.value);
     });
-});
-</script>
+
+    document.getElementById('bookingForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const name = document.getElementById('name').value;
+      const phone = document.getElementById('phone').value;
+      const guests = document.getElementById('guests').value;
+
+      const submitBtn = this.querySelector('.btn-submit');
+      const originalText = submitBtn.textContent;
+      submitBtn.textContent = 'Надсилаємо...';
+      submitBtn.disabled = true;
+
+      fetch('/api/booking', {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+              name: name,
+              phone: phone,
+              guests: guests
+          })
+      })
+      .then(async response => {
+          if (response.ok) {
+              alert(`Дякуємо, ${name}! Ваше бронювання прийнято.`);
+              this.reset();
+          } else {
+              const errData = await response.json().catch(() => ({}));
+              alert(errData.error || 'Помилка при відправці бронювання.');
+          }
+      })
+      .catch(error => {
+          console.error('Ошибка:', error);
+          alert('Сталася помилка під час відправки запиту.');
+      })
+      .finally(() => {
+          submitBtn.textContent = originalText;
+          submitBtn.disabled = false;
+      });
+    });
+  </script>
 </body>
 </html>
