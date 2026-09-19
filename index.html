@@ -58,6 +58,10 @@
             border-bottom: 1px solid rgba(200, 150, 102, 0.15);
         }
 
+        .logo, .navbar-brand {
+  margin-right: 40px; /* Додає простір між назвою та меню */
+}
+
         .logo {
             font-family: var(--font-title);
             font-size: 2rem;
@@ -66,6 +70,20 @@
             text-decoration: none;
             letter-spacing: 1px;
         }
+
+        header, .nav-container {
+  display: flex;
+  justify-content: space-between; /* Розносить логотип, меню та кнопки по краях */
+  align-items: center;
+  padding: 20px 40px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 30px; /* Збільшує відстань між самими пунктами меню */
+  margin-left: auto; /* Допомагає змістити меню в потрібну сторону */
+  margin-right: 40px;
+}
 
         .logo span { color: var(--accent-gold); }
 
