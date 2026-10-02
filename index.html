@@ -1280,7 +1280,66 @@
         'footer.copyright': '© 2026 Aroma Coffee. Tous droits réservés.'
       }
     };
+// Обробка форми бронювання та кастомного модального вікна
+    const bookingForm = document.getElementById('bookingForm');
+    const modal = document.getElementById('custom-modal');
+    const closeBtn = document.getElementById('modal-close-btn');
+    const modalMessage = document.getElementById('modal-message');
 
+    if (bookingForm && modal) {
+      bookingForm.addEventListener('submit', async function(e) {
+        e.preventDefault();
+
+        const nameInput = bookingForm.querySelector('input[type="text"]');
+        const phoneInput = bookingForm.querySelector('input[type="tel"]');
+        const guestsSelect = bookingForm.querySelector('select');
+        
+        const userName = nameInput ? nameInput.value.trim() : 'Гість';
+        const userPhone = phoneInput ? phoneInput.value.trim() : '';
+        const userGuests = guestsSelect ? guestsSelect.value : '';
+
+        try {
+          // Відправляємо дані на ваш бекенд (серверну функцію Vercel)
+          const response = await fetch('/api/send-telegram', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              name: userName,
+              phone: userPhone,
+              guests: userGuests
+            })
+          });
+
+          if (response.ok) {
+            if (modalMessage) {
+              modalMessage.textContent = `Дякуємо, ${userName}! Ваше замовлення успішно оформлено.`;
+            }
+            modal.classList.add('active');
+          } else {
+            alert('Помилка при відправці. Спробуйте ще раз.');
+          }
+        } catch (error) {
+          console.error('Помилка:', error);
+          alert('Сталася мережева помилка.');
+        }
+      });
+    }
+
+    if (closeBtn && modal) {
+      closeBtn.addEventListener('click', () => {
+        modal.classList.remove('active');
+        if (bookingForm) bookingForm.reset();
+      });
+    }
+
+    if (modal && bookingForm) {
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+          modal.classList.remove('active');
+          bookingForm.reset();
+        }
+      });
+    }
     const languageSelect = document.getElementById('languageSelect');
 
     function setLanguage(lang) {
