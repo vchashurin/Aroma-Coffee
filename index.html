@@ -1605,12 +1605,19 @@
     const authFormsContainer = document.getElementById('auth-forms-container');
     const userProfileContainer = document.getElementById('user-profile-container');
     const userEmailDisplay = document.getElementById('user-email-display');
+    const authMessage = document.getElementById('auth-message');
     const avatarInitials = document.getElementById('avatar-initials');
     const avatarIcon = openModalBtn ? openModalBtn.querySelector('svg') : null;
     const configWarning = document.getElementById('firebase-config-warning');
 
     // Якщо все завантажилось, ховаємо попередження про відсутність налаштувань
     if (configWarning) configWarning.style.display = 'none';
+
+        const showAuthMessage = (message, state) => {
+            if (!authMessage) return;
+            authMessage.textContent = message;
+            authMessage.dataset.state = state;
+        };
 
     // Відкриття та закриття модального вікна
     if (openModalBtn && modalOverlay) {
@@ -1655,10 +1662,9 @@
         const password = passwordInput ? passwordInput.value.trim() : '';
         try {
           await createUserWithEmailAndPassword(auth, email, password);
-          alert('Реєстрація успішна!');
-          modalOverlay.classList.remove('active');
+                    showAuthMessage('Реєстрація успішна!', 'success');
         } catch (error) {
-          alert('Помилка реєстрації: ' + error.message);
+                    showAuthMessage('Помилка реєстрації: ' + error.message, 'error');
         }
       });
     }
@@ -1670,10 +1676,9 @@
         const password = passwordInput ? passwordInput.value.trim() : '';
         try {
           await signInWithEmailAndPassword(auth, email, password);
-          alert('Ви успішно увійшли!');
-          modalOverlay.classList.remove('active');
+                    showAuthMessage('Ви успішно увійшли!', 'success');
         } catch (error) {
-          alert('Помилка входу: ' + error.message);
+                    showAuthMessage('Помилка входу: ' + error.message, 'error');
         }
       });
     }
@@ -1683,10 +1688,9 @@
       btnLogout.addEventListener('click', async () => {
         try {
           await signOut(auth);
-          alert('Ви вийшли з акаунта.');
-          modalOverlay.classList.remove('active');
+                    showAuthMessage('Ви вийшли з акаунта.', 'success');
         } catch (error) {
-          alert('Помилка виходу: ' + error.message);
+                    showAuthMessage('Помилка виходу: ' + error.message, 'error');
         }
       });
     }
