@@ -394,6 +394,76 @@
 
         .btn-submit:hover { background: var(--accent-hover); }
 
+        .booking-dialog {
+            width: min(440px, calc(100% - 32px));
+            margin: auto;
+            padding: 36px 32px 30px;
+            color: var(--text-main);
+            text-align: center;
+            background: var(--surface-color);
+            border: 1px solid rgba(200, 150, 102, 0.42);
+            border-radius: 16px;
+            box-shadow: 0 24px 80px rgba(0, 0, 0, 0.5);
+        }
+
+        .booking-dialog[open] { animation: booking-dialog-in 0.24s ease-out; }
+
+        .booking-dialog::backdrop {
+            background: rgba(8, 7, 6, 0.76);
+            backdrop-filter: blur(5px);
+        }
+
+        .booking-dialog-icon {
+            display: grid;
+            width: 58px;
+            height: 58px;
+            margin: 0 auto 18px;
+            place-items: center;
+            color: var(--bg-color);
+            background: var(--accent-gold);
+            border-radius: 50%;
+            font-size: 1.45rem;
+        }
+
+        .booking-dialog[data-state="error"] .booking-dialog-icon {
+            color: var(--text-main);
+            background: #9e5146;
+        }
+
+        .booking-dialog h2 {
+            margin-bottom: 8px;
+            font-family: var(--font-title);
+            font-size: 2rem;
+        }
+
+        .booking-dialog p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .booking-dialog-close {
+            margin-top: 24px;
+            padding: 11px 26px;
+            color: var(--bg-color);
+            background: var(--accent-gold);
+            border: 0;
+            border-radius: 999px;
+            font: 600 0.9rem var(--font-body);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .booking-dialog-close:hover { background: var(--accent-hover); }
+
+        @keyframes booking-dialog-in {
+            from { opacity: 0; transform: translateY(10px) scale(0.98); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .booking-dialog[open] { animation: none; }
+        }
+
         /* Підвал */
         footer {
             background: #0b0a09;
@@ -757,6 +827,13 @@
         </div>
     </footer>
 
+    <dialog class="booking-dialog" id="bookingDialog" aria-labelledby="bookingDialogTitle" aria-describedby="bookingDialogMessage">
+        <div class="booking-dialog-icon" aria-hidden="true"><i class="fa-solid fa-check"></i></div>
+        <h2 id="bookingDialogTitle"></h2>
+        <p id="bookingDialogMessage"></p>
+        <button class="booking-dialog-close" id="bookingDialogClose" type="button" data-i18n="booking.dialog.close">Зрозуміло</button>
+    </dialog>
+
    <script>
     const translations = {
       uk: {
@@ -825,6 +902,11 @@
         'booking.option3': '3-4 особи',
         'booking.option4': '5+ осіб',
         'booking.submit': 'Підтвердити бронювання',
+        'booking.confirmation.title': 'Бронювання прийнято',
+        'booking.confirmation.message': 'Дякуємо, {{name}}! Ми чекатимемо на вас у Aroma Coffee.',
+        'booking.error.title': 'Не вдалося надіслати',
+        'booking.error.message': 'Сталася помилка під час відправки запиту. Спробуйте ще раз.',
+        'booking.dialog.close': 'Зрозуміло',
         'footer.text': 'Ваш затишний куточок зі справжньою кавою, чаєм та атмосферними напоями.',
         'footer.addressTitle': 'Адреса та Час',
         'footer.address': 'вул. Хрещатик, 15, Київ',
@@ -898,6 +980,11 @@
         'booking.option3': '3-4 guests',
         'booking.option4': '5+ guests',
         'booking.submit': 'Confirm reservation',
+        'booking.confirmation.title': 'Reservation confirmed',
+        'booking.confirmation.message': 'Thank you, {{name}}! We look forward to welcoming you to Aroma Coffee.',
+        'booking.error.title': 'Could not send request',
+        'booking.error.message': 'There was a problem sending your request. Please try again.',
+        'booking.dialog.close': 'Got it',
         'footer.text': 'Your cozy corner with real coffee, tea, and atmospheric drinks.',
         'footer.addressTitle': 'Address & Hours',
         'footer.address': 'Khreshchatyk St., 15, Kyiv',
@@ -971,6 +1058,11 @@
         'booking.option3': '3-4 osoby',
         'booking.option4': '5+ osób',
         'booking.submit': 'Potwierdź rezerwację',
+        'booking.confirmation.title': 'Rezerwacja przyjęta',
+        'booking.confirmation.message': 'Dziękujemy, {{name}}! Czekamy na Ciebie w Aroma Coffee.',
+        'booking.error.title': 'Nie udało się wysłać',
+        'booking.error.message': 'Wystąpił problem z wysłaniem zgłoszenia. Spróbuj ponownie.',
+        'booking.dialog.close': 'Rozumiem',
         'footer.text': 'Twój przytulny kącik z prawdziwą kawą, herbatą i klimatycznymi napojami.',
         'footer.addressTitle': 'Adres i godziny',
         'footer.address': 'ul. Chreszczatyk 15, Kijów',
@@ -1044,6 +1136,11 @@
         'booking.option3': '3-4 человека',
         'booking.option4': '5+ человек',
         'booking.submit': 'Подтвердить бронирование',
+        'booking.confirmation.title': 'Бронирование принято',
+        'booking.confirmation.message': 'Спасибо, {{name}}! Будем ждать вас в Aroma Coffee.',
+        'booking.error.title': 'Не удалось отправить',
+        'booking.error.message': 'Не удалось отправить запрос. Пожалуйста, попробуйте еще раз.',
+        'booking.dialog.close': 'Понятно',
         'footer.text': 'Ваш уютный уголок с настоящим кофе, чаем и атмосферными напитками.',
         'footer.addressTitle': 'Адрес и Время',
         'footer.address': 'ул. Хрещатик, 15, Киев',
@@ -1117,6 +1214,11 @@
         'booking.option3': '3-4 Personen',
         'booking.option4': '5+ Personen',
         'booking.submit': 'Reservierung bestätigen',
+        'booking.confirmation.title': 'Reservierung bestätigt',
+        'booking.confirmation.message': 'Vielen Dank, {{name}}! Wir freuen uns auf Ihren Besuch im Aroma Coffee.',
+        'booking.error.title': 'Anfrage konnte nicht gesendet werden',
+        'booking.error.message': 'Beim Senden Ihrer Anfrage ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.',
+        'booking.dialog.close': 'Verstanden',
         'footer.text': 'Ihr gemütlicher Ort mit echtem Kaffee, Tee und stimmungsvollen Getränken.',
         'footer.addressTitle': 'Adresse & Öffnungszeiten',
         'footer.address': 'Chreschtschatyk Str. 15, Kiew',
@@ -1190,6 +1292,11 @@
         'booking.option3': '3-4 personnes',
         'booking.option4': '5+ personnes',
         'booking.submit': 'Confirmer la réservation',
+        'booking.confirmation.title': 'Réservation confirmée',
+        'booking.confirmation.message': 'Merci, {{name}} ! Nous avons hâte de vous accueillir chez Aroma Coffee.',
+        'booking.error.title': 'Envoi impossible',
+        'booking.error.message': 'Une erreur est survenue lors de l’envoi. Veuillez réessayer.',
+        'booking.dialog.close': 'Compris',
         'footer.text': 'Votre coin confortable avec un vrai café, du thé et des boissons conviviales.',
         'footer.addressTitle': 'Adresse & horaires',
         'footer.address': 'Rue Khreshchatyk, 15, Kiev',
@@ -1225,6 +1332,29 @@
       setLanguage(this.value);
     });
 
+        const bookingDialog = document.getElementById('bookingDialog');
+        const bookingDialogTitle = document.getElementById('bookingDialogTitle');
+        const bookingDialogMessage = document.getElementById('bookingDialogMessage');
+        const bookingDialogIcon = bookingDialog.querySelector('.booking-dialog-icon i');
+
+        function showBookingDialog(state, message) {
+            const lang = document.documentElement.lang;
+            const copy = translations[lang] || translations.uk;
+            bookingDialog.dataset.state = state;
+            bookingDialogTitle.textContent = copy[state === 'success' ? 'booking.confirmation.title' : 'booking.error.title'];
+            bookingDialogMessage.textContent = message;
+            bookingDialogIcon.className = state === 'success' ? 'fa-solid fa-check' : 'fa-solid fa-triangle-exclamation';
+            bookingDialog.showModal();
+        }
+
+        document.getElementById('bookingDialogClose').addEventListener('click', function () {
+            bookingDialog.close();
+        });
+
+        bookingDialog.addEventListener('click', function (event) {
+            if (event.target === bookingDialog) bookingDialog.close();
+        });
+
     document.getElementById('bookingForm').addEventListener('submit', function(e) {
       e.preventDefault();
 
@@ -1250,16 +1380,18 @@
       })
       .then(async response => {
           if (response.ok) {
-              alert(`Дякуємо, ${name}! Ваше бронювання прийнято.`);
+              const lang = document.documentElement.lang;
+              const copy = translations[lang] || translations.uk;
+              showBookingDialog('success', copy['booking.confirmation.message'].replace('{{name}}', name));
               this.reset();
           } else {
               const errData = await response.json().catch(() => ({}));
-              alert(errData.error || 'Помилка при відправці бронювання.');
+              showBookingDialog('error', errData.error || (translations[document.documentElement.lang] || translations.uk)['booking.error.message']);
           }
       })
       .catch(error => {
           console.error('Ошибка:', error);
-          alert('Сталася помилка під час відправки запиту.');
+          showBookingDialog('error', (translations[document.documentElement.lang] || translations.uk)['booking.error.message']);
       })
       .finally(() => {
           submitBtn.textContent = originalText;
