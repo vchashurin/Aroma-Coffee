@@ -160,6 +160,17 @@
                 .auth-message[data-state="error"] { color: #e59a8f; }
                 .auth-message[data-state="success"] { color: #b8d1a1; }
 
+                .auth-feedback {
+                    display: grid;
+                    justify-items: center;
+                    gap: 12px;
+                    margin-top: 18px;
+                }
+
+                .auth-feedback[hidden] { display: none; }
+                .auth-feedback .auth-message { min-height: 0; margin: 0; font-size: 0.95rem; }
+                .auth-feedback .auth-btn { min-width: 96px; }
+
                 @media (max-width: 768px) {
                         .profile-avatar-btn { width: 40px; height: 40px; flex-basis: 40px; }
                         .auth-modal-content { padding: 30px 22px 24px; }
@@ -711,7 +722,10 @@
                 <p id="user-email-display" style="margin-bottom: 20px; color: var(--accent-gold); font-weight: 600;"></p>
                 <button id="btn-logout" class="auth-btn btn-out" type="button">Вийти з акаунта</button>
             </div>
-            <p id="auth-message" class="auth-message" role="status" aria-live="polite"></p>
+            <div id="auth-feedback" class="auth-feedback" hidden>
+                <p id="auth-message" class="auth-message" role="status" aria-live="polite"></p>
+                <button id="auth-message-ok" class="auth-btn btn-log" type="button">Ок</button>
+            </div>
         </section>
     </div>
 
@@ -1605,7 +1619,9 @@
     const authFormsContainer = document.getElementById('auth-forms-container');
     const userProfileContainer = document.getElementById('user-profile-container');
     const userEmailDisplay = document.getElementById('user-email-display');
+    const authFeedback = document.getElementById('auth-feedback');
     const authMessage = document.getElementById('auth-message');
+    const authMessageOk = document.getElementById('auth-message-ok');
     const avatarInitials = document.getElementById('avatar-initials');
     const avatarIcon = openModalBtn ? openModalBtn.querySelector('svg') : null;
     const configWarning = document.getElementById('firebase-config-warning');
@@ -1617,12 +1633,25 @@
             if (!authMessage) return;
             authMessage.textContent = message;
             authMessage.dataset.state = state;
+            if (authFeedback) authFeedback.hidden = false;
+        };
+
+        const clearAuthMessage = () => {
+            if (authMessage) {
+                authMessage.textContent = '';
+                delete authMessage.dataset.state;
+            }
+            if (authFeedback) authFeedback.hidden = true;
         };
 
     // Відкриття та закриття модального вікна
     if (openModalBtn && modalOverlay) {
-      openModalBtn.addEventListener('click', () => modalOverlay.classList.add('active'));
+            openModalBtn.addEventListener('click', () => {
+                clearAuthMessage();
+                modalOverlay.classList.add('active');
+            });
     }
+        if (authMessageOk) authMessageOk.addEventListener('click', clearAuthMessage);
     if (closeModalBtn && modalOverlay) {
       closeModalBtn.addEventListener('click', () => modalOverlay.classList.remove('active'));
     }
@@ -1660,6 +1689,7 @@
       btnRegister.addEventListener('click', async () => {
         const email = emailInput ? emailInput.value.trim() : '';
         const password = passwordInput ? passwordInput.value.trim() : '';
+                clearAuthMessage();
         try {
           await createUserWithEmailAndPassword(auth, email, password);
                     showAuthMessage('Реєстрація успішна!', 'success');
@@ -1674,6 +1704,7 @@
       btnLogin.addEventListener('click', async () => {
         const email = emailInput ? emailInput.value.trim() : '';
         const password = passwordInput ? passwordInput.value.trim() : '';
+                clearAuthMessage();
         try {
           await signInWithEmailAndPassword(auth, email, password);
                     showAuthMessage('Ви успішно увійшли!', 'success');
@@ -1686,6 +1717,7 @@
     // Вихід
     if (btnLogout) {
       btnLogout.addEventListener('click', async () => {
+                clearAuthMessage();
         try {
           await signOut(auth);
                     showAuthMessage('Ви вийшли з акаунта.', 'success');
