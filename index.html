@@ -1580,140 +1580,115 @@
     </script>
 
     <script type="module">
-        const modalOverlay = document.getElementById('auth-modal-overlay');
-        const openModalButton = document.getElementById('open-auth-modal');
-        const closeModalButton = document.getElementById('close-auth-modal');
-        const authForm = document.getElementById('auth-form');
-        const emailInput = document.getElementById('auth-email');
-        const passwordInput = document.getElementById('auth-password');
-        const registerButton = document.getElementById('btn-register');
-        const loginButton = document.getElementById('btn-login');
-        const logoutButton = document.getElementById('btn-logout');
-        const authMessage = document.getElementById('auth-message');
-        const userProfile = document.getElementById('user-profile-container');
-        const userEmailDisplay = document.getElementById('user-email-display');
-        const avatarButton = document.getElementById('open-auth-modal');
-        const avatarIcon = avatarButton.querySelector('svg');
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+  import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
 
-        let auth = null;
-        let authSdk = null;
+  // 1. Ваші ключі Firebase (перевірте, чи вони тут прописані)
+  const firebaseConfig = {
+    apiKey: "AIzaSyCjv6SyYMJ7mGeFFE-zBWLpFtJfs_bfgGI",
+    authDomain: "aroma-coffee-8f810.firebaseapp.com",
+    projectId: "aroma-coffee-8f810",
+    storageBucket: "aroma-coffee-8f810.appspot.com",
+    messagingSenderId: "13403033685",
+    appId: "1:13403033685:web:979031b739a66e0a2e84dc",
+    measurementId: "G-F6VMGG4C3C"
+  };
 
-        function setAuthMessage(message, state = '') {
-            authMessage.textContent = message;
-            authMessage.dataset.state = state;
+  // 2. Ініціалізація
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+
+  // 3. Логіка роботи інтерфейсу та кнопок
+  window.addEventListener('DOMContentLoaded', () => {
+    const openModalBtn = document.getElementById('open-auth-modal');
+    const closeModalBtn = document.getElementById('close-auth-modal');
+    const modalOverlay = document.getElementById('auth-modal-overlay');
+    
+    const emailInput = document.getElementById('auth-email');
+    const passwordInput = document.getElementById('auth-password');
+    const btnRegister = document.getElementById('btn-register');
+    const btnLogin = document.getElementById('btn-login');
+    const btnLogout = document.getElementById('btn-logout');
+    
+    const authFormsContainer = document.getElementById('auth-forms-container');
+    const userProfileContainer = document.getElementById('user-profile-container');
+    const userEmailDisplay = document.getElementById('user-email-display');
+    const avatarInitials = document.getElementById('avatar-initials');
+    const configWarning = document.getElementById('firebase-config-warning');
+
+    // Якщо все завантажилось, ховаємо попередження про відсутність налаштувань
+    if (configWarning) configWarning.style.display = 'none';
+
+    // Відкриття та закриття модального вікна
+    if (openModalBtn && modalOverlay) {
+      openModalBtn.addEventListener('click', () => modalOverlay.classList.add('active'));
+    }
+    if (closeModalBtn && modalOverlay) {
+      closeModalBtn.addEventListener('click', () => modalOverlay.classList.remove('active'));
+    }
+    if (modalOverlay) {
+      modalOverlay.addEventListener('click', (e) => {
+        if (e.target === modalOverlay) modalOverlay.classList.remove('active');
+      });
+    }
+
+    // Відстеження стану авторизації
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        if (authFormsContainer) authFormsContainer.style.display = 'none';
+        if (userProfileContainer) userProfileContainer.style.display = 'block';
+        if (userEmailDisplay) userEmailDisplay.textContent = user.email;
+        if (avatarInitials) avatarInitials.textContent = user.email.charAt(0).toUpperCase();
+      } else {
+        if (authFormsContainer) authFormsContainer.style.display = 'block';
+        if (userProfileContainer) userProfileContainer.style.display = 'none';
+        if (avatarInitials) avatarInitials.textContent = '👤';
+      }
+    });
+
+    // Реєстрація
+    if (btnRegister) {
+      btnRegister.addEventListener('click', async () => {
+        const email = emailInput ? emailInput.value.trim() : '';
+        const password = passwordInput ? passwordInput.value.trim() : '';
+        try {
+          await createUserWithEmailAndPassword(auth, email, password);
+          alert('Реєстрація успішна!');
+          modalOverlay.classList.remove('active');
+        } catch (error) {
+          alert('Помилка реєстрації: ' + error.message);
         }
+      });
+    }
 
-        function closeAuthModal() {
-            modalOverlay.classList.remove('active');
-            modalOverlay.setAttribute('aria-hidden', 'true');
-            document.body.style.overflow = '';
-            openModalButton.focus();
+    // Вхід
+    if (btnLogin) {
+      btnLogin.addEventListener('click', async () => {
+        const email = emailInput ? emailInput.value.trim() : '';
+        const password = passwordInput ? passwordInput.value.trim() : '';
+        try {
+          await signInWithEmailAndPassword(auth, email, password);
+          alert('Ви успішно увійшли!');
+          modalOverlay.classList.remove('active');
+        } catch (error) {
+          alert('Помилка входу: ' + error.message);
         }
+      });
+    }
 
-        openModalButton.addEventListener('click', () => {
-            modalOverlay.classList.add('active');
-            modalOverlay.setAttribute('aria-hidden', 'false');
-            document.body.style.overflow = 'hidden';
-            setAuthMessage('');
-            emailInput.focus();
-        });
-
-        closeModalButton.addEventListener('click', closeAuthModal);
-        modalOverlay.addEventListener('click', (event) => {
-            if (event.target === modalOverlay) closeAuthModal();
-        });
-        document.addEventListener('keydown', (event) => {
-            if (event.key === 'Escape' && modalOverlay.classList.contains('active')) closeAuthModal();
-        });
-
-        const firebaseConfig = window.firebaseConfig;
-        if (firebaseConfig?.apiKey && firebaseConfig?.authDomain && firebaseConfig?.projectId) {
-            try {
-                const [appSdk, loadedAuthSdk] = await Promise.all([
-                    import('https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js'),
-                    import('https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js')
-                ]);
-                const app = appSdk.getApps().length
-                    ? appSdk.getApp()
-                    : appSdk.initializeApp(firebaseConfig);
-                authSdk = loadedAuthSdk;
-                auth = authSdk.getAuth(app);
-
-                authSdk.onAuthStateChanged(auth, (user) => {
-                    document.getElementById('auth-forms-container').hidden = Boolean(user);
-                    userProfile.hidden = !user;
-                    if (user) {
-                        userEmailDisplay.textContent = user.email || '';
-                        avatarButton.title = user.email || 'Особистий кабінет';
-                        avatarButton.setAttribute('aria-label', user.email || 'Особистий кабінет');
-                        avatarIcon.hidden = true;
-                        let initials = avatarButton.querySelector('.avatar-initials');
-                        if (!initials) {
-                            initials = document.createElement('span');
-                            initials.className = 'avatar-initials';
-                            avatarButton.append(initials);
-                        }
-                        initials.textContent = (user.email || 'U').charAt(0).toUpperCase();
-                    } else {
-                        avatarButton.title = 'Особистий кабінет';
-                        avatarButton.setAttribute('aria-label', 'Відкрити особистий кабінет');
-                        avatarIcon.hidden = false;
-                        avatarButton.querySelector('.avatar-initials')?.remove();
-                    }
-                });
-            } catch (error) {
-                setAuthMessage(`Не вдалося підключити Firebase: ${error.message}`, 'error');
-            }
+    // Вихід
+    if (btnLogout) {
+      btnLogout.addEventListener('click', async () => {
+        try {
+          await signOut(auth);
+          alert('Ви вийшли з акаунта.');
+          modalOverlay.classList.remove('active');
+        } catch (error) {
+          alert('Помилка виходу: ' + error.message);
         }
-
-        function getFriendlyAuthError(error) {
-            const messages = {
-                'auth/email-already-in-use': 'Ця електронна пошта вже зареєстрована. Спробуйте увійти.',
-                'auth/invalid-email': 'Перевірте правильність електронної пошти.',
-                'auth/weak-password': 'Пароль має містити щонайменше 6 символів.',
-                'auth/invalid-credential': 'Неправильна електронна пошта або пароль.',
-                'auth/too-many-requests': 'Забагато спроб. Спробуйте трохи пізніше.'
-            };
-            return messages[error.code] || error.message || 'Сталася помилка. Спробуйте ще раз.';
-        }
-
-        async function runAuthAction(button, action) {
-            if (!auth || !authSdk) {
-                setAuthMessage('Firebase ще не налаштовано. Додайте конфігурацію вашого Firebase-проєкту.', 'error');
-                return;
-            }
-            if (!authForm.reportValidity()) return;
-
-            button.disabled = true;
-            setAuthMessage('Зачекайте, виконується запит...');
-            try {
-                await action(emailInput.value.trim(), passwordInput.value);
-                setAuthMessage('Готово. Ви увійшли до облікового запису.', 'success');
-                passwordInput.value = '';
-                closeAuthModal();
-            } catch (error) {
-                setAuthMessage(getFriendlyAuthError(error), 'error');
-            } finally {
-                button.disabled = false;
-            }
-        }
-
-        registerButton.addEventListener('click', () => runAuthAction(registerButton, (email, password) =>
-            authSdk.createUserWithEmailAndPassword(auth, email, password)
-        ));
-
-        loginButton.addEventListener('click', () => runAuthAction(loginButton, (email, password) =>
-            authSdk.signInWithEmailAndPassword(auth, email, password)
-        ));
-
-        logoutButton.addEventListener('click', async () => {
-            try {
-                await authSdk.signOut(auth);
-                setAuthMessage('Ви вийшли з облікового запису.', 'success');
-            } catch (error) {
-                setAuthMessage(getFriendlyAuthError(error), 'error');
-            }
-        });
-    </script>
+      });
+    }
+  });
+</script>
 </body>
 </html>
