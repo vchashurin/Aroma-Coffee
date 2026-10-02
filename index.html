@@ -801,6 +801,29 @@
         </div>
     </section>
 
+    <script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+  import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+
+  // Вставьте сюда скопированный объект конфигурации
+  const firebaseConfig = {
+    apiKey: "AIzaSyCjv6SyYMJ7mGeFFE-zBWLpFtJfs_bfgGI",
+    authDomain: "aroma-coffee-8f810.firebaseapp.com",
+    projectId: "aroma-coffee-8f810",
+    storageBucket: "aroma-coffee-8f810.appspot.com",
+    messagingSenderId: "13403033685",
+    appId: "1:13403033685:web:979031b739a66e0a2e84dc",
+    measurementId: "G-F6VMGG4C3C"
+  };
+
+  // Инициализация Firebase
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+
+  // Делаем auth доступным глобально, чтобы связать с вашими кнопками/формами
+  window.firebaseAuth = { auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut };
+</script>
+
     <!-- Підвал -->
     <footer id="contacts">
         <div class="footer-grid">
