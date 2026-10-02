@@ -839,72 +839,515 @@
         </div>
     </footer>
 
-  <script>
-    // ... ваш попередній код перекладів (translations, setLanguage тощо) залишається тут ...
+<script>
+    const translations = {
+      uk: {
+        'nav.features': 'Особливості',
+        'nav.menu': 'Меню',
+        'nav.reserve': 'Бронювання',
+        'nav.contacts': 'Контакти',
+        'language': 'Мова',
+        'button.reserve': 'Забронювати',
+        'hero.subtitle': 'Свіжообсмажена кава та авторські напої',
+        'hero.title': 'Атмосфера затишку та справжнього смаку',
+        'hero.text': 'Завітайте до Aroma Coffee за любимою кавою, вишуканим чаєм, прохолодними коктейлями та десертами.',
+        'hero.button': 'Переглянути меню',
+        'features.label': 'Чому саме ми',
+        'features.heading': 'В нашій кав\'ярні є...',
+        'feature.roast.title': 'Власне обсмаження',
+        'feature.roast.text': 'Ми використовуємо лише спешелті-зерна 100% Арабіки та обсмажуємо їх невеликими партіями щотижня.',
+        'feature.pet.title': 'Pet-Friendly зона',
+        'feature.pet.text': 'Завітайте до нас із чотирилапим другом! Для питомців завжди є свіжа вода та смаколики.',
+        'feature.coworking.title': 'Coworking-зони',
+        'feature.coworking.text': 'Розетки біля кожного столика, швидкісний Wi-Fi та зручні крісла для комфортної роботи або навчання.',
+        'feature.milk.title': 'Альтернативне молоко',
+        'feature.milk.text': 'Готуємо каву на вівсяному, мигдалевому, кокосовому або безлактозному молоці без доплати.',
+        'menu.label': 'Наш асортимент',
+        'menu.heading': 'Авторське Меню',
+        'menu.category.coffee': 'Кава та Десерти',
+        'menu.category.tea': 'Вибір Чайного Сомельє',
+        'menu.category.drinks': 'Прохолодні Коктейлі & Лимонади',
+        'menu.espresso.title': 'Еспресо Доппіо',
+        'menu.espresso.text': 'Подвійна порція насиченої кави з густою пінкою та яскравою кислинкою.',
+        'menu.cappuccino.title': 'Капучино',
+        'menu.cappuccino.text': 'Класичний баланс міцного еспресо та ніжне збите молоко.',
+        'menu.flatwhite.title': 'Флет Вайт',
+        'menu.flatwhite.text': 'Подвійний еспресо із тонким шаром шовковистого молока.',
+        'menu.latte.title': 'Лате Макіато',
+        'menu.latte.text': 'Ніжний та м\'який кавовий напій із високою молочною піною.',
+        'menu.lavender.title': 'Лавандовий Раф',
+        'menu.lavender.text': 'Вершково-кавовий напій із додаванням натурального лавандового цукру.',
+        'menu.filter.title': 'Фільтр-Кава Batch Brew',
+        'menu.filter.text': 'Легка кава з багатим фруктово-ягідним букетом смаку.',
+        'menu.croissant.title': 'Французький Круасан',
+        'menu.croissant.text': 'Свіжоспечений хрусткий круасан на вершковому маслі.',
+        'menu.tart.title': 'Фісташковий Тарт',
+        'menu.tart.text': 'Пісочна основа, фісташковий крем та свіжі ягоди малини.',
+        'menu.brownie.title': 'Шоколадний Брауні',
+        'menu.brownie.text': 'Вологий десерт із чорного шоколаду з волоським горіхом та сіллю.',
+        'menu.matcha.title': 'Матча Лате',
+        'menu.matcha.text': 'Японський зелений чай церемоніального класу з вівсяним молоком.',
+        'menu.jasmine.title': 'Жасминовий Сенча',
+        'menu.jasmine.text': 'Класичний зелений чай із витонченим ароматом квітів жасмину.',
+        'menu.earlgrey.title': 'Ерл Грей Бергамот',
+        'menu.earlgrey.text': 'Насичений чорний високогірний чай з натуральною олією бергамоту.',
+        'menu.tonic.title': 'Еспресо Тонік',
+        'menu.tonic.text': 'Подвійний еспресо, ігристий тонік, лід та часточка свіжого лайма.',
+        'menu.mojito.title': 'Б/А Мохіто Полуничний',
+        'menu.mojito.text': 'Свіжа м\'ята, тростинний цукор, полуничне пюре, содова та лід.',
+        'menu.lemonade.title': 'Лимонад Цитрус-Імбир',
+        'menu.lemonade.text': 'Освіжаючий мікс апельсинового та фрешу грейпфрута з імбирним сиропом.',
+        'reserve.label': 'Завітайте в гості',
+        'reserve.heading': 'Забронювати Столик',
+        'booking.name': 'Ваше ім\'я',
+        'booking.phone': 'Номер телефону',
+        'booking.guests': 'Кількість гостей',
+        'booking.option1': '1 особа',
+        'booking.option2': '2 особи',
+        'booking.option3': '3-4 особи',
+        'booking.option4': '5+ осіб',
+        'booking.submit': 'Підтвердити бронювання',
+        'footer.text': 'Ваш затишний куточок зі справжньою кавою, чаєм та атмосферними напоями.',
+        'footer.addressTitle': 'Адреса та Час',
+        'footer.address': 'вул. Хрещатик, 15, Київ',
+        'footer.hours': 'Щодня: 08:00 – 21:00',
+        'footer.socialTitle': 'Ми в соцмережах',
+        'footer.copyright': '© 2026 Aroma Coffee. Всі права захищені.'
+      },
+      en: {
+        'nav.features': 'Features',
+        'nav.menu': 'Menu',
+        'nav.reserve': 'Reservation',
+        'nav.contacts': 'Contacts',
+        'language': 'Language',
+        'button.reserve': 'Book a table',
+        'hero.subtitle': 'Freshly roasted coffee and signature drinks',
+        'hero.title': 'A cozy atmosphere and real flavor',
+        'hero.text': 'Visit Aroma Coffee for your favorite coffee, exquisite tea, refreshing cocktails, and desserts.',
+        'hero.button': 'View menu',
+        'features.label': 'Why us',
+        'features.heading': 'Our coffee house has...',
+        'feature.roast.title': 'In-house roasting',
+        'feature.roast.text': 'We use only 100% Arabica specialty beans and roast them in small weekly batches.',
+        'feature.pet.title': 'Pet-friendly zone',
+        'feature.pet.text': 'Come visit with your four-legged friend! Fresh water and treats are always available for pets.',
+        'feature.coworking.title': 'Coworking zones',
+        'feature.coworking.text': 'Sockets at every table, fast Wi-Fi, and comfortable chairs for work or study.',
+        'feature.milk.title': 'Alternative milk',
+        'feature.milk.text': 'We prepare coffee with oat, almond, coconut, or lactose-free milk at no extra charge.',
+        'menu.label': 'Our range',
+        'menu.heading': 'Signature Menu',
+        'menu.category.coffee': 'Coffee & Desserts',
+        'menu.category.tea': 'Tea Sommelier Selection',
+        'menu.category.drinks': 'Cold Cocktails & Lemonades',
+        'menu.espresso.title': 'Espresso Doppio',
+        'menu.espresso.text': 'A double portion of rich coffee with dense crema and bright acidity.',
+        'menu.cappuccino.title': 'Cappuccino',
+        'menu.cappuccino.text': 'Classic balance of strong espresso and silky milk foam.',
+        'menu.flatwhite.title': 'Flat White',
+        'menu.flatwhite.text': 'Double espresso with a thin layer of velvety milk.',
+        'menu.latte.title': 'Latte Macchiato',
+        'menu.latte.text': 'A soft and delicate coffee drink with a high milk foam layer.',
+        'menu.lavender.title': 'Lavender Raf',
+        'menu.lavender.text': 'Creamy coffee drink with natural lavender sugar.',
+        'menu.filter.title': 'Filter Coffee Batch Brew',
+        'menu.filter.text': 'A light coffee with a rich fruity berry bouquet.',
+        'menu.croissant.title': 'French Croissant',
+        'menu.croissant.text': 'Freshly baked buttery croissant with a crisp texture.',
+        'menu.tart.title': 'Pistachio Tart',
+        'menu.tart.text': 'Shortcrust pastry, pistachio cream, and fresh raspberry berries.',
+        'menu.brownie.title': 'Chocolate Brownie',
+        'menu.brownie.text': 'Moist chocolate dessert with walnuts and a touch of sea salt.',
+        'menu.matcha.title': 'Matcha Latte',
+        'menu.matcha.text': 'Ceremonial-grade Japanese green tea with oat milk.',
+        'menu.jasmine.title': 'Jasmine Sencha',
+        'menu.jasmine.text': 'Classic green tea with a delicate jasmine floral aroma.',
+        'menu.earlgrey.title': 'Earl Grey Bergamot',
+        'menu.earlgrey.text': 'Strong black high-mountain tea with natural bergamot oil.',
+        'menu.tonic.title': 'Espresso Tonic',
+        'menu.tonic.text': 'Double espresso, sparkling tonic, ice, and a slice of fresh lime.',
+        'menu.mojito.title': 'Strawberry Non-Alcoholic Mojito',
+        'menu.mojito.text': 'Fresh mint, cane sugar, strawberry puree, soda, and ice.',
+        'menu.lemonade.title': 'Citrus-Ginger Lemonade',
+        'menu.lemonade.text': 'Refreshing mix of orange and grapefruit juice with ginger syrup.',
+        'reserve.label': 'Visit us',
+        'reserve.heading': 'Book a Table',
+        'booking.name': 'Your name',
+        'booking.phone': 'Phone number',
+        'booking.guests': 'Guests',
+        'booking.option1': '1 guest',
+        'booking.option2': '2 guests',
+        'booking.option3': '3-4 guests',
+        'booking.option4': '5+ guests',
+        'booking.submit': 'Confirm reservation',
+        'footer.text': 'Your cozy corner with real coffee, tea, and atmospheric drinks.',
+        'footer.addressTitle': 'Address & Hours',
+        'footer.address': 'Khreshchatyk St., 15, Kyiv',
+        'footer.hours': 'Daily: 08:00 – 21:00',
+        'footer.socialTitle': 'Follow us',
+        'footer.copyright': '© 2026 Aroma Coffee. All rights reserved.'
+      },
+      pl: {
+        'nav.features': 'Atuty',
+        'nav.menu': 'Menu',
+        'nav.reserve': 'Rezerwacja',
+        'nav.contacts': 'Kontakt',
+        'language': 'Język',
+        'button.reserve': 'Zarezerwuj stolik',
+        'hero.subtitle': 'Świeżo palona kawa i autorskie napoje',
+        'hero.title': 'Atmosfera ciepła i prawdziwego smaku',
+        'hero.text': 'Zajrzyj do Aroma Coffee po ulubioną kawę, wyrafinowaną herbatę, orzeźwiające koktajle i desery.',
+        'hero.button': 'Zobacz menu',
+        'features.label': 'Dlaczego my',
+        'features.heading': 'W naszej kawiarni znajdziesz...',
+        'feature.roast.title': 'Własne palenie',
+        'feature.roast.text': 'Używamy tylko ziaren Specialty 100% Arabica i palimy je małymi partiami co tydzień.',
+        'feature.pet.title': 'Strefa dla zwierząt',
+        'feature.pet.text': 'Zajrzyjcie z czworonożnym przyjacielem! Dla pupili zawsze jest świeża woda i przekąski.',
+        'feature.coworking.title': 'Strefy coworkingowe',
+        'feature.coworking.text': 'Gniazdka przy każdym stoliku, szybki Wi-Fi i wygodne krzesła do pracy lub nauki.',
+        'feature.milk.title': 'Mleko alternatywne',
+        'feature.milk.text': 'Przygotowujemy kawę na mleku owsianym, migdałowym, kokosowym lub bezlaktozowym bez dopłaty.',
+        'menu.label': 'Nasza oferta',
+        'menu.heading': 'Autorskie menu',
+        'menu.category.coffee': 'Kawa i Desery',
+        'menu.category.tea': 'Wybór Herbacianego Sommeliera',
+        'menu.category.drinks': 'Ochłodzące Koktajle i Lemoniady',
+        'menu.espresso.title': 'Espresso Doppio',
+        'menu.espresso.text': 'Podwójna porcja bogatej kawy z gęstą pianą i wyraźną kwaskowatością.',
+        'menu.cappuccino.title': 'Cappuccino',
+        'menu.cappuccino.text': 'Klasyczna równowaga mocnego espresso i delikatnej bitej śmietanki.',
+        'menu.flatwhite.title': 'Flat White',
+        'menu.flatwhite.text': 'Podwójne espresso z cienką warstwą aksamitnego mleka.',
+        'menu.latte.title': 'Latte Macchiato',
+        'menu.latte.text': 'Delikatny i miękki napój kawowy z wysoką warstwą mlecznej pianki.',
+        'menu.lavender.title': 'Lawendowy Raf',
+        'menu.lavender.text': 'Kawowy napój z dodatkiem naturalnego cukru lawendowego.',
+        'menu.filter.title': 'Kawa filtrowana Batch Brew',
+        'menu.filter.text': 'Lekka kawa z bogatym owocowo-owocowym bukietem aromatu.',
+        'menu.croissant.title': 'Francuski Croissant',
+        'menu.croissant.text': 'Świeżo upieczony chrupiący croissant z masłem.',
+        'menu.tart.title': 'Tarta Orzechowa',
+        'menu.tart.text': 'Krucha baza, krem pistacjowy i świeże maliny.',
+        'menu.brownie.title': 'Czekoladowy Brownie',
+        'menu.brownie.text': 'Mocno wilgotny deser z ciemnej czekolady z orzechami włoskimi i solą.',
+        'menu.matcha.title': 'Matcha Latte',
+        'menu.matcha.text': 'Japońska zielona herbata ceremonialna z mlekiem owsianym.',
+        'menu.jasmine.title': 'Jaśminowy Sencha',
+        'menu.jasmine.text': 'Klasyczna zielona herbata z delikatnym aromatem jaśminu.',
+        'menu.earlgrey.title': 'Earl Grey Bergamotka',
+        'menu.earlgrey.text': 'Gęsta czarna herbata wysokogórska z naturalnym olejkiem bergamotki.',
+        'menu.tonic.title': 'Espresso Tonic',
+        'menu.tonic.text': 'Podwójne espresso, musujący tonik, lód i plaster świeżego limonka.',
+        'menu.mojito.title': 'Truskawkowy Mojito Bezalkoholowe',
+        'menu.mojito.text': 'Świeża mięta, cukier trzcinowy, puree truskawkowe, soda i lód.',
+        'menu.lemonade.title': 'Cytrusowo-Imbirowa Lemoniada',
+        'menu.lemonade.text': 'Orzeźwiająca mieszanka soku pomarańczowego i grejpfruta z syropem imbirowym.',
+        'reserve.label': 'Wpadnij do nas',
+        'reserve.heading': 'Zarezerwuj stolik',
+        'booking.name': 'Twoje imię',
+        'booking.phone': 'Numer telefonu',
+        'booking.guests': 'Ilość gości',
+        'booking.option1': '1 osoba',
+        'booking.option2': '2 osoby',
+        'booking.option3': '3-4 osoby',
+        'booking.option4': '5+ osób',
+        'booking.submit': 'Potwierdź rezerwację',
+        'footer.text': 'Twój przytulny kącik z prawdziwą kawą, herbatą i klimatycznymi napojami.',
+        'footer.addressTitle': 'Adres i godziny',
+        'footer.address': 'ul. Chreszczatyk 15, Kijów',
+        'footer.hours': 'Codziennie: 08:00 – 21:00',
+        'footer.socialTitle': 'Śledź nas',
+        'footer.copyright': '© 2026 Aroma Coffee. Wszelkie prawa zastrzeżone.'
+      },
+      ru: {
+        'nav.features': 'Особенности',
+        'nav.menu': 'Меню',
+        'nav.reserve': 'Бронирование',
+        'nav.contacts': 'Контакты',
+        'language': 'Язык',
+        'button.reserve': 'Забронировать',
+        'hero.subtitle': 'Свежемолотый кофе и авторские напитки',
+        'hero.title': 'Атмосфера уюта и настоящего вкуса',
+        'hero.text': 'Загляните в Aroma Coffee за любимым кофе, изысканным чаем, освежающими коктейлями и десертами.',
+        'hero.button': 'Посмотреть меню',
+        'features.label': 'Почему мы',
+        'features.heading': 'В нашей кофейне есть...',
+        'feature.roast.title': 'Собственная обжарка',
+        'feature.roast.text': 'Мы используем только спешелти-зерна 100% Арабики и обжариваем их небольшими партиями каждую неделю.',
+        'feature.pet.title': 'Pet-Friendly зона',
+        'feature.pet.text': 'Заходите к нам вместе с четвероногим другом! Для питомцев всегда есть свежая вода и лакомства.',
+        'feature.coworking.title': 'Coworking-зоны',
+        'feature.coworking.text': 'Розетки у каждого столика, быстрый Wi-Fi и удобные кресла для комфортной работы или обучения.',
+        'feature.milk.title': 'Альтернативное молоко',
+        'feature.milk.text': 'Готовим кофе на овсяном, миндальном, кокосовом или безлактозном молоке без доплаты.',
+        'menu.label': 'Наш ассортимент',
+        'menu.heading': 'Авторское меню',
+        'menu.category.coffee': 'Кофе и Десерты',
+        'menu.category.tea': 'Выбор Чайного Сомелье',
+        'menu.category.drinks': 'Холодные Коктейли и Лимонады',
+        'menu.espresso.title': 'Эспрессо Доппио',
+        'menu.espresso.text': 'Двойная порция насыщенного кофе с густой пенкой и яркой кислинкой.',
+        'menu.cappuccino.title': 'Капучино',
+        'menu.cappuccino.text': 'Классический баланс крепкого эспрессо и нежного вспененного молока.',
+        'menu.flatwhite.title': 'Флет Вайт',
+        'menu.flatwhite.text': 'Двойной эспрессо с тонким слоем шелковистого молока.',
+        'menu.latte.title': 'Латте Макиато',
+        'menu.latte.text': 'Нежный и мягкий кофейный напиток с высоким слоем молочной пены.',
+        'menu.lavender.title': 'Лавандовый Раф',
+        'menu.lavender.text': 'Сливочно-кофейный напиток с добавлением натурального лавандового сахара.',
+        'menu.filter.title': 'Фильтр-Кофе Batch Brew',
+        'menu.filter.text': 'Легкий кофе с богатым фруктово-ягодным букетом вкуса.',
+        'menu.croissant.title': 'Французский Круассан',
+        'menu.croissant.text': 'Свежеспеченный хрустящий круассан со сливочным маслом.',
+        'menu.tart.title': 'Фисташковый Тарт',
+        'menu.tart.text': 'Песочная основа, фисташковый крем и свежие ягоды малины.',
+        'menu.brownie.title': 'Шоколадный Брауни',
+        'menu.brownie.text': 'Влажный десерт из черного шоколада с грецким орехом и солью.',
+        'menu.matcha.title': 'Матча Латте',
+        'menu.matcha.text': 'Японский зеленый чай церемониального класса с овсяным молоком.',
+        'menu.jasmine.title': 'Жасминовый Сенча',
+        'menu.jasmine.text': 'Классический зеленый чай с тонким ароматом жасмина.',
+        'menu.earlgrey.title': 'Эрл Грей Бергамот',
+        'menu.earlgrey.text': 'Насыщенный черный чай с натуральным маслом бергамота.',
+        'menu.tonic.title': 'Эспрессо Тоник',
+        'menu.tonic.text': 'Двойной эспрессо, игристый тоник, лед и долька свежего лайма.',
+        'menu.mojito.title': 'Б/А Мохито Клубничный',
+        'menu.mojito.text': 'Свежая мята, тростниковый сахар, клубничное пюре, сода и лед.',
+        'menu.lemonade.title': 'Лимонад Цитрус-Имбирь',
+        'menu.lemonade.text': 'Освежающая смесь апельсинового и грейпфрутового сока с имбирным сиропом.',
+        'reserve.label': 'Загляните в гости',
+        'reserve.heading': 'Забронировать столик',
+        'booking.name': 'Ваше имя',
+        'booking.phone': 'Номер телефона',
+        'booking.guests': 'Количество гостей',
+        'booking.option1': '1 человек',
+        'booking.option2': '2 человека',
+        'booking.option3': '3-4 человека',
+        'booking.option4': '5+ человек',
+        'booking.submit': 'Подтвердить бронирование',
+        'footer.text': 'Ваш уютный уголок с настоящим кофе, чаем и атмосферными напитками.',
+        'footer.addressTitle': 'Адрес и Время',
+        'footer.address': 'ул. Хрещатик, 15, Киев',
+        'footer.hours': 'Ежедневно: 08:00 – 21:00',
+        'footer.socialTitle': 'Мы в соцсетях',
+        'footer.copyright': '© 2026 Aroma Coffee. Все права защищены.'
+      },
+      de: {
+        'nav.features': 'Merkmale',
+        'nav.menu': 'Menü',
+        'nav.reserve': 'Reservierung',
+        'nav.contacts': 'Kontakt',
+        'language': 'Sprache',
+        'button.reserve': 'Tisch reservieren',
+        'hero.subtitle': 'Frisch gerösteter Kaffee und Spezialgetränke',
+        'hero.title': 'Atmosphäre von Gemütlichkeit und echtem Geschmack',
+        'hero.text': 'Besuchen Sie Aroma Coffee für Ihren Lieblingskaffee, feinen Tee, erfrischende Cocktails und Desserts.',
+        'hero.button': 'Menü ansehen',
+        'features.label': 'Warum wir',
+        'features.heading': 'Unsere Kaffeebar bietet...',
+        'feature.roast.title': 'Eigene Röstung',
+        'feature.roast.text': 'Wir verwenden nur 100 % Arabica-Spezialbohnen und rösten sie in kleinen wöchentlichen Chargen.',
+        'feature.pet.title': 'Hundefreundlicher Bereich',
+        'feature.pet.text': 'Kommen Sie mit Ihrem Vierbeiner vorbei! Für Haustiere gibt es immer frisches Wasser und Leckereien.',
+        'feature.coworking.title': 'Coworking-Bereiche',
+        'feature.coworking.text': 'Steckdosen an jedem Tisch, schnelles WLAN und bequeme Stühle für Arbeit oder Lernen.',
+        'feature.milk.title': 'Alternative Milch',
+        'feature.milk.text': 'Wir bereiten Kaffee mit Hafer-, Mandel-, Kokos- oder laktosefreier Milch ohne Aufpreis zu.',
+        'menu.label': 'Unser Sortiment',
+        'menu.heading': 'Signature-Menü',
+        'menu.category.coffee': 'Kaffee & Desserts',
+        'menu.category.tea': 'Tee-Sommelier-Auswahl',
+        'menu.category.drinks': 'Kalte Cocktails & Limonaden',
+        'menu.espresso.title': 'Espresso Doppio',
+        'menu.espresso.text': 'Doppelte Portion reichen Kaffees mit dicker Crema und heller Säure.',
+        'menu.cappuccino.title': 'Cappuccino',
+        'menu.cappuccino.text': 'Klassische Harmonie aus starkem Espresso und cremiger Milch.',
+        'menu.flatwhite.title': 'Flat White',
+        'menu.flatwhite.text': 'Doppelter Espresso mit einer dünnen Schicht samtiger Milch.',
+        'menu.latte.title': 'Latte Macchiato',
+        'menu.latte.text': 'Ein weicher, delikater Kaffee mit einer hohen Milchschaumschicht.',
+        'menu.lavender.title': 'Lavendel-Raf',
+        'menu.lavender.text': 'Creamy coffee drink with natural lavender sugar.',
+        'menu.filter.title': 'Filterkaffee Batch Brew',
+        'menu.filter.text': 'Ein leichter Kaffee mit reichem fruchtig-beerigem Aroma.',
+        'menu.croissant.title': 'Französisches Croissant',
+        'menu.croissant.text': 'Frisch gebackenes, knuspriges Buttercroissant.',
+        'menu.tart.title': 'Pistazientarte',
+        'menu.tart.text': 'Mürbeteig, Pistaziencreme und frische Himbeeren.',
+        'menu.brownie.title': 'Schokoladen-Brownie',
+        'menu.brownie.text': 'Feuchter Schokoladen-Dessert mit Walnüssen und einer Prise Meersalz.',
+        'menu.matcha.title': 'Matcha Latte',
+        'menu.matcha.text': 'Japanischer Grüntee von hohem Standard mit Hafermilch.',
+        'menu.jasmine.title': 'Jasmin Sencha',
+        'menu.jasmine.text': 'Klassischer Grüntee mit delikatem Jasmin-Aroma.',
+        'menu.earlgrey.title': 'Earl Grey Bergamotte',
+        'menu.earlgrey.text': 'Starker schwarzer Hochgebirgs-Tee mit natürlichem Bergamottöl.',
+        'menu.tonic.title': 'Espresso Tonic',
+        'menu.tonic.text': 'Doppelter Espresso, sprudelnder Tonic, Eis und eine Scheibe frischer Limette.',
+        'menu.mojito.title': 'Erdbeer-Mojito ohne Alkohol',
+        'menu.mojito.text': 'Frische Minze, Rohrzucker, Erdbeerpüree, Soda und Eis.',
+        'menu.lemonade.title': 'Zitrus-Ingwer-Limonade',
+        'menu.lemonade.text': 'Erfrischender Mix aus Orangensaft und Grapefruitsaft mit Ingwersirup.',
+        'reserve.label': 'Besuchen Sie uns',
+        'reserve.heading': 'Tisch reservieren',
+        'booking.name': 'Ihr Name',
+        'booking.phone': 'Telefonnummer',
+        'booking.guests': 'Anzahl der Gäste',
+        'booking.option1': '1 Person',
+        'booking.option2': '2 Personen',
+        'booking.option3': '3-4 Personen',
+        'booking.option4': '5+ Personen',
+        'booking.submit': 'Reservierung bestätigen',
+        'footer.text': 'Ihr gemütlicher Ort mit echtem Kaffee, Tee und stimmungsvollen Getränken.',
+        'footer.addressTitle': 'Adresse & Öffnungszeiten',
+        'footer.address': 'Chreschtschatyk Str. 15, Kiew',
+        'footer.hours': 'Täglich: 08:00 – 21:00',
+        'footer.socialTitle': 'Folgen Sie uns',
+        'footer.copyright': '© 2026 Aroma Coffee. Alle Rechte vorbehalten.'
+      },
+      fr: {
+        'nav.features': 'Avantages',
+        'nav.menu': 'Menu',
+        'nav.reserve': 'Réservation',
+        'nav.contacts': 'Contacts',
+        'language': 'Langue',
+        'button.reserve': 'Réserver une table',
+        'hero.subtitle': 'Café fraîchement torréfié et boissons signatures',
+        'hero.title': 'Une atmosphère chaleureuse et un vrai goût',
+        'hero.text': 'Rendez-vous chez Aroma Coffee pour votre café préféré, un thé raffiné, des cocktails rafraîchissants et des desserts.',
+        'hero.button': 'Voir le menu',
+        'features.label': 'Pourquoi nous',
+        'features.heading': 'Notre café propose...',
+        'feature.roast.title': 'Torréfaction maison',
+        'feature.roast.text': 'Nous utilisons uniquement des grains de spécialité 100 % Arabica et les torréfions en petites lots chaque semaine.',
+        'feature.pet.title': 'Espace bienvenu aux animaux',
+        'feature.pet.text': 'Venez avec votre compagnon à quatre pattes ! Il y a toujours de l’eau fraîche et des friandises pour eux.',
+        'feature.coworking.title': 'Zones coworking',
+        'feature.coworking.text': 'Des prises à chaque table, Wi‑Fi rapide et des chaises confortables pour travailler ou étudier.',
+        'feature.milk.title': 'Lait alternatif',
+        'feature.milk.text': 'Nous préparons le café avec du lait d’avoine, d’amande, de coco ou sans lactose sans supplément.',
+        'menu.label': 'Notre gamme',
+        'menu.heading': 'Menu signature',
+        'menu.category.coffee': 'Café & Desserts',
+        'menu.category.tea': 'Sélection du sommelier thé',
+        'menu.category.drinks': 'Cocktails froids & Limonades',
+        'menu.espresso.title': 'Espresso Doppio',
+        'menu.espresso.text': 'Double portion de café riche avec une crème dense et une acidité vive.',
+        'menu.cappuccino.title': 'Cappuccino',
+        'menu.cappuccino.text': 'Équilibre classique entre espresso intense et lait mousseux velouté.',
+        'menu.flatwhite.title': 'Flat White',
+        'menu.flatwhite.text': 'Double espresso avec une fine couche de lait velouté.',
+        'menu.latte.title': 'Latte Macchiato',
+        'menu.latte.text': 'Boisson café douce et délicate avec une couche élevée de mousse de lait.',
+        'menu.lavender.title': 'Raf à la lavande',
+        'menu.lavender.text': 'Boisson de café crémeuse avec du sucre naturel à la lavande.',
+        'menu.filter.title': 'Café filtre Batch Brew',
+        'menu.filter.text': 'Un café léger au bouquet fruité et aux baies généreuses.',
+        'menu.croissant.title': 'Croissant français',
+        'menu.croissant.text': 'Croissant croustillant fraîchement sorti du four au beurre.',
+        'menu.tart.title': 'Tarte aux pistaches',
+        'menu.tart.text': 'Pâte sablée, crème aux pistaches et framboises fraîches.',
+        'menu.brownie.title': 'Brownie au chocolat',
+        'menu.brownie.text': 'Dessert au chocolat moelleux avec des noix et une touche de sel marin.',
+        'menu.matcha.title': 'Matcha Latte',
+        'menu.matcha.text': 'Thé vert japonais de qualité cérémoniale avec du lait d’avoine.',
+        'menu.jasmine.title': 'Sencha au jasmin',
+        'menu.jasmine.text': 'Thé vert classique avec un arôme délicat de jasmin.',
+        'menu.earlgrey.title': 'Earl Grey Bergamote',
+        'menu.earlgrey.text': 'Thé noir puissant des montagnes avec de l’huile naturelle de bergamote.',
+        'menu.tonic.title': 'Espresso Tonic',
+        'menu.tonic.text': 'Double espresso, tonic pétillant, glace et tranche de citron vert.',
+        'menu.mojito.title': 'Mojito sans alcool à la fraise',
+        'menu.mojito.text': 'Menthe fraîche, sucre de canne, purée de fraise, soda et glace.',
+        'menu.lemonade.title': 'Limonade agrumes-gingembre',
+        'menu.lemonade.text': 'Mélange rafraîchissant de jus d’orange et de pamplemousse avec sirop de gingembre.',
+        'reserve.label': 'Venez nous rendre visite',
+        'reserve.heading': 'Réserver une table',
+        'booking.name': 'Votre nom',
+        'booking.phone': 'Numéro de téléphone',
+        'booking.guests': 'Nombre de personnes',
+        'booking.option1': '1 personne',
+        'booking.option2': '2 personnes',
+        'booking.option3': '3-4 personnes',
+        'booking.option4': '5+ personnes',
+        'booking.submit': 'Confirmer la réservation',
+        'footer.text': 'Votre coin confortable avec un vrai café, du thé et des boissons conviviales.',
+        'footer.addressTitle': 'Adresse & horaires',
+        'footer.address': 'Rue Khreshchatyk, 15, Kiev',
+        'footer.hours': 'Tous les jours: 08:00 – 21:00',
+        'footer.socialTitle': 'Suivez-nous',
+        'footer.copyright': '© 2026 Aroma Coffee. Tous droits réservés.'
+      }
+    };
 
-    // Обробка форми бронювання та пряма відправка в Telegram
-    const bookingForm = document.getElementById('bookingForm');
-    const modal = document.getElementById('custom-modal');
-    const closeBtn = document.getElementById('modal-close-btn');
-    const modalMessage = document.getElementById('modal-message');
+    const languageSelect = document.getElementById('languageSelect');
 
-    if (bookingForm && modal) {
-      bookingForm.addEventListener('submit', async function(e) {
-        e.preventDefault();
+    function setLanguage(lang) {
+      const selected = translations[lang] ? lang : 'uk';
+      document.documentElement.lang = selected;
+      document.querySelectorAll('[data-i18n]').forEach((element) => {
+        const key = element.getAttribute('data-i18n');
+        if (translations[selected][key]) {
+          element.textContent = translations[selected][key];
+        }
+      });
+      localStorage.setItem('site-language', selected);
+      languageSelect.value = selected;
+    }
 
-        const nameInput = bookingForm.querySelector('input[type="text"]');
-        const phoneInput = bookingForm.querySelector('input[type="tel"]');
-        const guestsSelect = bookingForm.querySelector('select');
-        
-        const userName = nameInput ? nameInput.value.trim() : 'Гість';
-        const userPhone = phoneInput ? phoneInput.value.trim() : '';
-        const userGuests = guestsSelect ? guestsSelect.value : '';
+    const savedLanguage = localStorage.getItem('site-language');
+    if (savedLanguage) {
+      setLanguage(savedLanguage);
+    } else {
+      setLanguage('uk');
+    }
 
-        const message = `☕ Нове бронювання столика!\n\n👤 Ім'я: ${userName}\n📞 Телефон: ${userPhone}\n👥 Гостей: ${userGuests}`;
+    languageSelect.addEventListener('change', function () {
+      setLanguage(this.value);
+    });
 
-        try {
-          const response = await fetch(`https://api.telegram.org/bot${TOKEN}/sendMessage`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              chat_id: CHAT_ID,
-              text: message,
-              parse_mode: 'HTML'
-            })
-          });
+    document.getElementById('bookingForm').addEventListener('submit', function(e) {
+      e.preventDefault();
 
+      const name = document.getElementById('name').value;
+      const phone = document.getElementById('phone').value;
+      const guests = document.getElementById('guests').value;
+
+      const submitBtn = this.querySelector('.btn-submit');
+      const originalText = submitBtn.textContent;
+      submitBtn.textContent = 'Надсилаємо...';
+      submitBtn.disabled = true;
+
+      fetch('/api/booking', {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+              name: name,
+              phone: phone,
+              guests: guests
+          })
+      })
+      .then(async response => {
           if (response.ok) {
-            if (modalMessage) {
-              modalMessage.textContent = `Дякуємо, ${userName}! Ваше замовлення успішно оформлено.`;
-            }
-            modal.classList.add('active');
+              alert(`Дякуємо, ${name}! Ваше бронювання прийнято.`);
+              this.reset();
           } else {
-            const errData = await response.json();
-            console.error('Помилка від Telegram:', errData);
-            alert('Помилка при відправці. Перевірте токен.');
+              const errData = await response.json().catch(() => ({}));
+              alert(errData.error || 'Помилка при відправці бронювання.');
           }
-        } catch (error) {
-          console.error('Помилка мережі:', error);
-          alert('Сталася мережева помилка.');
-        }
+      })
+      .catch(error => {
+          console.error('Ошибка:', error);
+          alert('Сталася помилка під час відправки запиту.');
+      })
+      .finally(() => {
+          submitBtn.textContent = originalText;
+          submitBtn.disabled = false;
       });
-    }
-
-    if (closeBtn && modal) {
-      closeBtn.addEventListener('click', () => {
-        modal.classList.remove('active');
-        if (bookingForm) bookingForm.reset();
-      });
-    }
-
-    if (modal && bookingForm) {
-      modal.addEventListener('click', (e) => {
-        if (e.target === modal) {
-          modal.classList.remove('active');
-          bookingForm.reset();
-        }
-      });
-    }
+    });
   </script>
 </body>
 </html>
