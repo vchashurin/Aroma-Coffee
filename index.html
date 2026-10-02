@@ -683,6 +683,7 @@
         <a href="#reserve" class="btn-reserve" data-i18n="button.reserve">Забронювати</a>
         <div class="auth-avatar-wrapper">
             <button id="open-auth-modal" class="profile-avatar-btn" type="button" title="Особистий кабінет" aria-label="Відкрити особистий кабінет">
+                <span id="avatar-initials" hidden aria-hidden="true"></span>
                 <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9Zm0 2c-4.42 0-8 2.24-8 5v2h16v-2c0-2.76-3.58-5-8-5Z"/></svg>
             </button>
         </div>
@@ -1605,6 +1606,7 @@
     const userProfileContainer = document.getElementById('user-profile-container');
     const userEmailDisplay = document.getElementById('user-email-display');
     const avatarInitials = document.getElementById('avatar-initials');
+    const avatarIcon = openModalBtn ? openModalBtn.querySelector('svg') : null;
     const configWarning = document.getElementById('firebase-config-warning');
 
     // Якщо все завантажилось, ховаємо попередження про відсутність налаштувань
@@ -1629,11 +1631,20 @@
         if (authFormsContainer) authFormsContainer.style.display = 'none';
         if (userProfileContainer) userProfileContainer.style.display = 'block';
         if (userEmailDisplay) userEmailDisplay.textContent = user.email;
-        if (avatarInitials) avatarInitials.textContent = user.email.charAt(0).toUpperCase();
+                if (avatarInitials) {
+                    const profileName = user.displayName || user.email || '';
+                    avatarInitials.textContent = Array.from(profileName.trim())[0]?.toLocaleUpperCase() || '';
+                    avatarInitials.hidden = !avatarInitials.textContent;
+                }
+                if (avatarIcon) avatarIcon.hidden = true;
       } else {
         if (authFormsContainer) authFormsContainer.style.display = 'block';
         if (userProfileContainer) userProfileContainer.style.display = 'none';
-        if (avatarInitials) avatarInitials.textContent = '👤';
+                if (avatarInitials) {
+                    avatarInitials.textContent = '';
+                    avatarInitials.hidden = true;
+                }
+                if (avatarIcon) avatarIcon.hidden = false;
       }
     });
 
