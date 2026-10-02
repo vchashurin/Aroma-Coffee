@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="uk">
 <head>
-  <meta charset="UTF-8">
-  <title>Aroma Coffee</title>
-  <!-- Іконка чашки кави прямо у коді -->
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23d4a373'><path d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8 0-2.81 1.43-5.28 3.6-6.74l8.14 8.14C17.28 18.57 14.81 20 12 20zm6.4-3.26L10.66 8.6C12.01 7.6 13.68 7 15.5 7c2.48 0 4.5 2.02 4.5 4.5 0 1.82-.6 3.49-1.6 4.74z'/></svg>">
-</head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aroma Coffee — Затишна кав'ярня у місті</title>
+
+    <div id="google_translate_element"></div>
+    
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -442,81 +443,6 @@
             .hero h1 { font-size: 3rem; }
             .section { padding: 60px 5%; }
         }
-    /* Затемнення фону */
-.modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.7);
-  backdrop-filter: blur(5px);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 9999;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.3s ease, visibility 0.3s ease;
-}
-
-/* Клас для активації анімації появи */
-.modal-overlay.active {
-  opacity: 1;
-  visibility: visible;
-}
-
-/* Тіло модального вікна з анімацією вильоту */
-.modal-content {
-  background: #1c1715;
-  border: 1px solid #d4a373;
-  border-radius: 16px;
-  padding: 30px 40px;
-  text-align: center;
-  max-width: 400px;
-  width: 90%;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-  transform: translateY(-20px);
-  transition: transform 0.3s ease;
-}
-
-.modal-overlay.active .modal-content {
-  transform: translateY(0);
-}
-
-.modal-icon {
-  font-size: 40px;
-  margin-bottom: 15px;
-}
-
-.modal-content h3 {
-  color: #ffffff;
-  font-size: 1.5rem;
-  margin-bottom: 10px;
-}
-
-.modal-content p {
-  color: #d1c7bc;
-  font-size: 1rem;
-  margin-bottom: 25px;
-}
-
-/* Кнопка */
-.modal-btn {
-  background-color: #d4a373;
-  color: #161210;
-  border: none;
-  padding: 10px 25px;
-  font-size: 1rem;
-  font-weight: 600;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background-color 0.2s;
-}
-
-.modal-btn:hover {
-  background-color: #e5b383;
-}
     </style>
 </head>
 <body>
@@ -807,7 +733,7 @@
     <footer id="contacts">
         <div class="footer-grid">
             <div class="footer-col">
-                <a href="#" class="logo">Aroma.coffee<span>.</span></a>
+                <a href="#" class="logo">Aroma.Coffee<span>.</span></a>
                 <p style="margin-top: 15px;" data-i18n="footer.text">Ваш затишний куточок зі справжньою кавою, чаєм та атмосферними напоями.</p>
             </div>
             <div class="footer-col">
@@ -824,22 +750,12 @@
                 </div>
             </div>
         </div>
-
-      <!-- Кастомне модальне вікно успішного бронювання -->
-<div id="custom-modal" class="modal-overlay">
-  <div class="modal-content">
-    <div class="modal-icon">☕</div>
-    <h3>Бронювання прийнято!</h3>
-    <p id="modal-message">Дякуємо! Ваше замовлення успішно оформлено.</p>
-    <button id="modal-close-btn" class="modal-btn">Чудово</button>
-  </div>
-</div>
         <div class="copyright">
-            <p data-i18n="footer.copyright">© 2026 AromaCoffee. Всі права захищені.</p>
+            <p data-i18n="footer.copyright">© 2026 Aroma Coffee. Всі права захищені.</p>
         </div>
     </footer>
 
-<script>
+   <script>
     const translations = {
       uk: {
         'nav.features': 'Особливості',
@@ -1351,5 +1267,3 @@
   </script>
 </body>
 </html>
-
- 
